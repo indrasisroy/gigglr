@@ -1,0 +1,118 @@
+		<!-- modal for review start -->
+			<div class="modal fade" id="reviewPopup" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog popup-dialog" role="document">
+	    <div class="modal-content popup-content artist_popup">
+	      <div class="modal-body popup-body">
+	          <div class="artist_hedr" style="background: #ff6364;">
+	            <button type="button" class="close popup-close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	             <h2>Leave a Review</h2>
+	          </div>
+	          <div class="artist_form_outr">
+	          	<div class="row">
+	          		<div class="profileImgSec">
+	          			<div class="person">
+                        							<?php
+							$image_path = '';
+							if($usr_typ == 'booker'){
+							  if($booker_data->image_name!=''){
+								$image = BASEURLPUBLICCUSTOM."upload/userimage/thumb-medium/".$booker_data->image_name;
+							  }else{
+								$image = BASEURLPUBLICCUSTOM.'/front/images/account_img.jpg';
+							  }
+							  
+							}else if($usr_typ == 'artist'){
+							  if($type_flag == '1'){
+							  if($artist_data[0]->image_name!=''){
+								$image = BASEURLPUBLICCUSTOM."upload/userimage/thumb-medium/".$artist_data[0]->image_name;
+							  }else{
+								$image = BASEURLPUBLICCUSTOM.'/front/images/account_img.jpg';
+							  }
+							  
+							  }else if($type_flag == '2'){
+								if($artist_data[0]->image_name!=''){
+								  $image = BASEURLPUBLICCUSTOM."upload/groupimage/thumb-medium/".$artist_data[0]->image_name;
+								}else{
+								  $image = BASEURLPUBLICCUSTOM.'/front/images/account_img.jpg';
+								}
+							  
+							  }else if($type_flag == '3'){
+							  if($artist_data[0]->image_name!=''){
+								$image = BASEURLPUBLICCUSTOM."upload/venueimage/thumb-medium/".$artist_data[0]->image_name;
+							  }else{
+								$image = BASEURLPUBLICCUSTOM.'/front/images/account_img.jpg';
+							  }
+							  
+							  }
+							}
+							?>
+                        <img src="<?php echo $image;?>" alt="" />
+                        </div>
+	          			<div class="prifile_heading">Edd Fisher</div>
+	          		</div>
+	          		<div class="ratingSec visitor_cols">
+						<div class="btn_row">
+							<div class="rank_cell">
+								Performance
+								<div class="star_cell">
+									<input class="rateStar" type="number" />
+								</div>
+							</div>
+						</div>	
+						<div class="btn_row">
+							<div class="rank_cell">
+								Presentation
+								<div class="star_cell">
+									<input class="rateStar" type="number" />
+                                    
+								</div>
+							</div>
+						</div>	
+						<div class="btn_row">
+							<div class="rank_cell">
+								Punctuality
+								<div class="star_cell">
+									<input class="rateStar" type="number" />
+								</div>
+							</div>
+						</div>	
+					</div>
+	          	</div>
+	          	
+	          	<div class="clearfix leavRvwTime">
+					<ul class="review_date">
+						<li>
+							<img src="<?php echo BASEURLPUBLICCUSTOM.'/front/images/calender_icon.png';?>" alt="">30 January, 2014
+						</li>
+						<li>
+							3:30 pm
+						</li>
+						<li>
+							<span>DJ:</span> House
+						</li>
+					</ul>
+					
+					<div class="form_right">
+						<img src="<?php echo BASEURLPUBLICCUSTOM.'/front/images/location_icon.png';?>" alt=""> Mumbai
+					</div>
+				</div>
+				
+                <h5>Write your review here:</h5>
+				<div class="editorWrap">
+					<textarea class="form-group inpt nb form-control" placeholder="Bare in mind a good review is an objective review.
+Use of offensive language will not be tolerated. Offensive remarks
+could result in the removal of your review.
+Your review could effect peoples livelihoods. Try be to be constructive where possible.
+Need help with a dispute?! please report this to us via the Support page."></textarea>
+				</div>
+				
+				<div class="customBtn-group clearfix">
+                	<button class="btn btn-warning artist_btn reqst_btn pull-left">cancel</button>
+                	<button class="btn btn-warning artist_btn rqst_trm_btn pull-right btn-pink">Post Review</button>
+                </div>
+	          	
+	          </div>
+	      </div>
+	    </div>
+	  </div>
+    </div>
+		<!-- modal for review end -->

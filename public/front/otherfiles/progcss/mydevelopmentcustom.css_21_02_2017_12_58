@@ -1,0 +1,979 @@
+.marginbottom5{
+    
+    margin-bottom:5px; 
+    
+}
+.marginbottom10{
+    
+    margin-bottom:10px; 
+    
+}
+.marginbottom20{
+    
+    margin-bottom:20px; 
+    
+}
+.marginbottom30{
+    
+    margin-bottom:30px; 
+    
+}
+
+.margintop5{
+    
+    margin-top:5px; 
+    
+}
+.margintop10{
+    
+    margin-top:10px; 
+    
+}
+.margintop20{
+    
+    margin-top:20px; 
+    
+}
+.margintop30{
+    
+    margin-top:30px; 
+    
+}
+
+.mydisplaynone{
+    display: none;
+}
+
+.mydisplayblock{
+    display: block;
+}
+.mytextcenter{
+    text-align:center;
+}
+
+.myerrorcolor{
+    color: #ff141e;
+}
+
+.myitalicclass{
+    font-style: italic;
+}
+
+
+.txtaligncustcls{
+ text-align: center;
+}
+/*** for frontend roster left panel - starts ***/
+
+.scrollforrosterleftclass{
+   /* height: 276px;*/
+    max-height: 318px;
+    overflow-y: auto;
+}
+
+.activepanecolorforrosterleftclass{
+    background-color: #ff635c !important;
+    color: white !important;
+}
+
+.rrostr{
+    margin-top:30px !important;
+}
+
+.marginleft25{
+    
+    margin-left:25px; 
+    
+}
+
+.rosterlefticonclass{
+    top: 22px;
+    position: relative;
+}
+
+.rosterleftextraiconclass {
+    color: white;
+}
+.cal_setting_txtcls{
+    color: white;
+}
+/*** for frontend roster left panel - ends ***/
+
+
+/*** for frontend roster five image icons - starts ***/
+
+.yellowclockdevroster{
+    
+     background: rgba(0, 0, 0, 0) url("../../images/home_icon.gif") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.yellowclockdev{
+    
+     background: rgba(0, 0, 0, 0) url("../../images/home_icon.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.redclockdev{
+     background: rgba(0, 0, 0, 0) url("../../images/clock-red.png") no-repeat scroll 0 6px;
+    width:15px;
+}
+
+.redclockdevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/clock-red.gif") no-repeat scroll 0 6px;
+    width:16px;
+}
+
+.yellowstardev{
+     background: rgba(0, 0, 0, 0) url("../../images/yellow_star.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.yellowstardevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/yellow_star.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.yellowgreystardev{
+     background: rgba(0, 0, 0, 0) url("../../images/Star.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.yellowgreystardevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/Silver_star.gif") no-repeat scroll 0 6px;
+     width:15px;
+}
+.bluepersonrevdevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/blue_person_rev.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.bluebookdev{
+     background: rgba(0, 0, 0, 0) url("../../images/book_blue.png") no-repeat scroll 0 6px;
+    width:15px;
+}
+
+.bluebookdevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/book_blue.png") no-repeat scroll 0 6px;
+    width:15px;
+}
+
+.purpleboxdev{
+    background: rgba(0, 0, 0, 0) url("../../images/box_icon.png") no-repeat scroll 0 6px;
+   width:15px;
+}
+
+.purpleboxdevroster{
+    background: rgba(0, 0, 0, 0) url("../../images/box_icon.png") no-repeat scroll 0 6px;
+   width:15px;
+}
+
+.zoomicondev{
+   /* background: rgba(0, 0, 0, 0) url("../../images/zoom_icon.png") no-repeat scroll 0 6px;*/
+   background-color: white;
+    cursor: pointer;
+}
+
+.blackstardev{
+     background: rgba(0, 0, 0, 0) url("../../images/star_icon.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.blackstardevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/star_icon.gif") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.greengigdev{
+     background: rgba(0, 0, 0, 0) url("../../images/box_icon-green.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.greengigdevroster{
+     background: rgba(0, 0, 0, 0) url("../../images/box_icon-green.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.eventfankdev{
+     background: rgba(0, 0, 0, 0) url("../../images/heart_icon2.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.eventgenredev{
+     background: rgba(0, 0, 0, 0) url("../../images/user.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.eventtowndev{
+     background: rgba(0, 0, 0, 0) url("../../images/home.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+/*** for frontend roster five image icons - ends ***/
+
+/***** for favorite like  heart button active starts ****/
+ .proflhearbuttonactv{
+    background: #fbda66 !important;
+ }
+/***** for favorite like  heart button active ends****/
+
+/*****  for calendar starts ******/
+
+.fc-ltr .fc-basic-view .fc-day-number {
+padding: 26px 6px 0;
+font-size: 20px;
+}
+
+.redclockdev, .purpleboxdev, .yellowstardev,.yellowgreystardev,.blackstardev,
+.yellowclockdevroster,.redclockdevroster,.yellowstardevroster,.purpleboxdevroster,.bluebookdevroster,.blackstardevroster,.yellowgreystardevroster,.greengigdevroster
+.bluebookdev ,.yellowclockdev ,.greengigdev ,.eventfankdev, .eventgenredev, .eventtowndev,.bluepersonrevdevroster  {
+margin: 0 2px;
+display: inline-block;
+vertical-align: middle;
+background-position: center center !important;
+}
+
+td .fc-day .zoomicondev {
+/*    border: #29b58e 2px solid;*/
+    background-color: white;
+    /* height: 100px; */
+    /* z-index: 9999999; */
+    position: relative;
+}
+td .fc-day .zoomicondev:after{
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: -1px;
+    bottom: -2px;
+    content: "";
+/*    border:2px solid #ff635c;*/
+    border: 2px solid rgb(241, 196, 15);
+    z-index: 1;
+}
+/*
+.fc-day-grid .fc-row:first-child td .fc-day .zoomicondev:after{
+    bottom: -1px;
+}
+*/
+.fc-day-grid .fc-row:first-child .fc-bg .zoomicondev::after {
+   bottom: 0;
+}
+.fc-row + .fc-row .fc-bg .fc-day {
+   border-top: none;
+}
+.fc-bg::after {
+   position: absolute;
+   content: '';
+   width: 100%;
+   height: 1px;
+   background: #DDDDDD;
+   bottom: 0px;
+   z-index: 0;
+}
+.zoomicondev {
+padding: 29px 12px;
+background-position: center center !important;
+display: inline-block;
+}
+.fc-more-cell > div {display: none !important}
+
+.commoncustrowclass {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -82px;
+    text-align: center;
+}
+.fc-row .fc-content-skeleton {
+    /*padding-bottom: 23px !important;*/
+}
+.fc-content-skeleton tr td {
+    position: relative;
+}
+
+.fc-scroller.fc-day-grid-container {
+    height: auto !important;
+    overflow: inherit !important;
+}
+.fc-row {
+height: auto !important;
+}
+/*****  for calendar ends ******/ 
+
+/********** edit profile image upload progress bar starts ****************/
+
+.userprofimgprogress 
+{
+  display:none; 
+  position:relative; 
+  width:400px; 
+  border: 1px solid #ddd; 
+  padding: 1px; 
+  border-radius: 3px;
+  background-color: #CED2D9;
+}
+.userprofimgbar 
+{ 
+  background-color: #276CBE; 
+  width:0%; 
+  height:20px; 
+  border-radius: 3px; 
+}
+
+.userprofimgpercent {
+position: absolute;
+display: inline-block;
+top: 3px;
+left: 0;
+right: 0;
+text-align: center;
+}
+
+
+
+.progressbarouter {
+position: relative;
+}
+.progressbarouter .userprofimgprogress {
+position: absolute;
+z-index: 9;
+width: 200px;
+left: 50%;
+margin-left: -100px;
+bottom: 10px;
+bottom: 28px;
+}
+
+/**** for loading opaque starts ********/
+.showloder{
+    display : block;
+    position : fixed;
+    z-index: 9999999999999999999999;
+    /*background-image : url('http://prosessionalbeta.in/front/otherfiles/progimages/bookingloder.gif');*/
+    background-color:#000000;
+    opacity : 0.95;
+    background-repeat : no-repeat;
+    background-position : center;
+    left : 0;
+    bottom : 0;
+    right : 0;
+    top : 0;
+}
+
+
+#loadercustomtxt {
+font-size: large;
+font-family: monospace;
+left: 0;
+/* line-height: 160px; */
+margin: auto;
+position: absolute;
+ padding-top: 100px;
+width: 100%;
+opacity: 0.7;
+text-align: center;
+color: #fff;
+}
+
+#divLoading {
+    background-color: rgba(0, 0, 0, 0.9);
+    background-position: center center;
+    background-repeat: no-repeat;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    text-align: center;
+    padding-top:200px;
+}
+/**** for loading opaque ends *********/
+
+/**** for ajax pagination starts *******/
+/*
+.pagination_outer_cust {
+	text-align: center;
+	margin: 15px 0;
+}
+.pagination_outer_cust li{
+	display: inline-block;
+	margin: 0 2px;
+}
+.pagination_outer_cust li a{
+	display: block;
+	padding:8px 10px;
+	border-radius: 3px;
+	background: #ebebeb;
+	font-size: 14px;
+	color:#556270;
+	font-weight: bold;
+	line-height: 13px;
+	text-decoration: none;
+}
+.pagination_outer_cust li:hover a, .pagination_outer_cust li.active a{
+	background: #4c4c4c;
+	color:#fff;
+}
+.pagination_outer_cust li.prev-nev a, .pagination_outer_cust li.next-nev a{
+	background: none;
+	padding: 8px 10px;
+}
+.pagination_outer_cust li.prev-nev:hover a, .pagination_outer_cust li.next-nev:hover a{
+	color:#556270;
+}
+*/
+#paym_trans_pagination_link .pagination_outer_cust {
+    margin: 10px 0;
+    background: #e8e7e7;
+/*    padding: 4px;*/
+    padding: 2px;
+}
+.search_pg {
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1053px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.search_pg .pagination_outer_cust li a {
+    color:#95a0ab; 
+}
+.pagination_outer_cust {
+/*	text-align: right;*/
+	margin: 15px 0;
+    font-family: 'Conv_AvenirLTStd-Light';
+}
+.pagination_outer_cust li{
+	display: inline-block;
+/*	margin: 0 2px;*/
+    font-size: 0;
+    color:#556270;
+    text-align: center;
+}
+.pagination_outer_cust li a {
+	display: block;
+/*	padding:8px 4px;*/
+	padding:8px 4px 5px;
+	border-radius: 3px;
+	font-size: 14px;
+	color:#556270;
+/*	color:#95a0ab;*/
+	font-weight: normal;
+	line-height: 13px;
+	text-decoration: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    margin: 0 2px;
+    min-width: 30px;
+}
+.pagination_outer_cust li:hover a, .pagination_outer_cust li.active a{
+/*	color:#95a0ab;*/
+    border-color: #8d8d8e;
+}
+.pagination_outer_cust li.prev-nev a, .pagination_outer_cust li.next-nev a{
+	background: none;
+	padding: 8px 10px;
+}
+.pagination_outer_cust li.prev-nev:hover a, .pagination_outer_cust li.next-nev:hover a{
+	color:#556270;
+}
+/**** for ajax pagination ends *******/
+
+
+
+/********** edit profile image upload progress bar ends ****************/
+
+/******************FOR ERROR MESSAGE CLASS STARTS HERE***************************/
+/*.authError{
+    border-color: red;
+    color: red;
+}*/
+
+.artist_list {
+position: relative;
+}
+span.authError {
+color: red !important;
+font-size: 13px !important;
+font-family: 'Conv_AvenirLTStd-Light' !important;
+position: absolute;
+top: 100%;
+background: #fff;
+padding: 6px;
+z-index: 9;
+border-radius: 4px;
+box-shadow: 0 0 3px 1px rgba(0,0,0,0.2);
+right: 0;
+}
+span.authError:after,span.authError:before {
+bottom: 100%;
+right: 15px;
+border: solid transparent;
+content: " ";
+height: 0;
+width: 0;
+position: absolute;
+pointer-events: none;
+}
+
+span.authError:before {
+border-color: rgba(221, 221, 221, 0);
+border-bottom-color: #ddd;
+border-width: 11px;
+margin-left: -11px;
+}
+span.authError:after {
+border-color: rgba(255, 255, 255, 0);
+border-bottom-color: #fff;
+border-width: 10px;
+margin-left: -10px;
+}
+ .banner{
+z-index:1;
+}
+
+
+/*******************FOR ERROR MESSAGE CLASS ENDS HERE****************************/
+
+/*******map*/
+
+.mapclass{
+  height:500px;
+  width:100%;
+}
+/*****map***/
+
+/*This section is for form control last added on 21-07-2016*/
+.from-control-custom{
+position: relative;
+}
+/**********For error class in textarea starts 21-07-2016 starts*************/
+.posRltv {
+position: relative;
+}
+/**********For error class in textarea starts 21-07-2016 ends*************/
+.clck.clickable {
+pointer-events: inherit !important;
+}
+.dj_row.editable {
+height: 200px;
+}
+/***************For menu style 21-07-2016 starts*****************/
+.menu_cstm .dropdown-menu > li > a:hover, .menu_cstm .dropdown-menu > li > a:focus {
+/*    background-color: rgba(56,56,56,0.9);*/
+    background: transparent;
+}
+.menu_cstm .dropdown-menu {
+text-align: center;
+}
+/***************For menu style 21-07-2016 ends*****************/
+
+/**********added by dhiman 11-07-16 start*******/
+.btn.btn-warning.reqst_btn_dvlr {
+    width: 159px;
+}
+.btn.btn-warning.reqst_btn_dvlr_negotiated {
+    width: 159px;
+    line-height: 20px !important;
+}
+.btn.btn-warning.reqst_btn_dvlr_cancel {
+    width: 159px;
+    background: #ff0000;
+}
+.btn.btn-warning.artist_btn_can:hover{
+    background-color:#FA3636;
+}
+.btn.btn-warning.reqst_btn_dvlr_accept {
+    width: 159px;
+    background: #2bb6a3;
+}
+.btn.btn-warning.artist_btn_acpt:hover{
+    background-color:#1E9787;
+}
+/**********added by dhiman 11-07-16 end*******/
+
+/*************************For venue edit section starts 22-07-2016************************************/
+.containerchkbox {
+      border:2px solid #ccc;      
+      padding: 24px 0 24px 50px;
+          min-height: 235px;
+    }
+    .amenitiesCheckScroll {
+      overflow-y: auto;
+      max-height: 186px;
+      /*padding-right: 24px;*/
+    }
+    .containerchkbox .amenitiesCheck {
+      width: 48%;
+      padding-right: 6px;
+      padding-left: 6px;
+      margin-bottom: 5px;
+      
+    }
+    .amenitiesCheck.radio-check input[type="checkbox"] + span {
+      background-color: transparent;
+      border-radius: 0;
+      border-color: #ccc;
+    }
+    .tttyyyyyy{
+      margin-left: -23px;
+
+    }
+    .amenitiesCheck img
+    {
+    margin-left: 6px;
+    }
+    .amnt-img{
+      width:17px;
+      height:14px;
+    }
+    .nodatacustlftclass {
+        
+        color: #fff;
+        font-size: 16px;
+       
+        
+        
+    }
+/*************************For venue edit section ends 22-07-2016************************************/
+
+/******** used in public profile  page to  show deactive on button ********/
+.deactive {
+
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.4;
+
+}
+/******** used in public profile  page to  show deactive on button ********/
+
+/***** for opacity in confoirm box starts*******/
+.jconfirm-bg{
+    opacity:1 !important;
+    
+}
+/***** for opacity in confoirm box ends*******/
+
+/************* added in 29-08 start *************/
+.event_list li:after, .event_list li:before {
+
+    content: "";
+
+    display: table;
+
+}
+
+.event_list li:after {
+
+    clear: both;
+
+}
+
+img.rosterlefticonclass {
+
+    margin-top: 4px;
+
+    position: inherit;
+
+    float: left;
+
+    margin-right: 5px;
+
+}
+
+.event_list li a {
+
+    padding-left: 0;
+
+    overflow: hidden;
+
+}
+/************* added in 29-08 end *************/
+
+/*Added for negotiation button color 26-10-2016*/
+.customBtn-group .btn {
+    border: 0;
+}
+
+.negotiationbtn {
+    background-color: #ff8300 !important;
+    border-color: #ff8300 !important;
+  }
+  .negotiationbtn:hover {
+    background-color: #E57A09 !important;
+    border-color: #E57A09 !important;
+  }
+
+  .disablecolorclass{
+    background-color: #eee !important;
+  }
+.hvr_innr {padding-bottom: 36px;}
+
+.buttonpercentg{
+  width:47% !important;
+}
+.toast-title{
+ text-align: center;
+}
+
+/*Added for negotiation button color 26-10-2016*/
+
+
+/* Added for resolve-dispute page starts */
+
+.detail-text{
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    text-align: left
+}
+
+.support-btn.detail-btn-view{	
+    height: 25px;
+    min-width: 100px;
+    padding: 0px;
+    font-size: 15px;
+}
+
+.profile_outer p.disputereply-headcontent{
+    font-size: 16px;
+    font-family: 'Conv_AvenirLTStd-Light';
+    margin-bottom: 36px;
+    margin-top: 26px;
+    text-align: left;
+    font-weight: bold;
+    color: rgb(109, 109, 109);
+}
+
+.for-left{
+    float: left;
+}
+
+.dull-button{
+    background-color: #777;
+    font-family: 'AvenirLTStd95Black';
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.dull-button:hover{
+    background-color: #ccc;
+    color: #777;
+}
+
+.for-align{
+    text-align: left;
+}
+
+/* Added for resolve-dispute page ends */
+
+
+/*Added for front page time picker date change 31-10-2016*/
+
+.bannerForm .timepicker {
+    text-transform: inherit;
+}
+/*Added for front page time picker date change 31-10-2016*/
+
+
+
+/*For jquery timrpicker starts here*/
+
+.ui-timepicker-container {
+    z-index: 9999 !important;
+}
+/*For jquery timepicker ends here*/
+
+
+/*For am pm background color*/
+.aaaaa button{
+  background-color: #ffd9d9!important;
+}
+.bbbbb button{
+  background-color: #fdf2e6!important;
+}
+/*For am pm background color*/
+
+
+/*.dropdown-menu .disable a, .dropdown-menu .disable a, li.dropdown:hover .dropdown-menu a {
+
+        color: #b5b1b1 !important;
+
+}*/
+
+.dropdown-menu li.disable a, .dropdown-menu li.disable:hover a, .dropdown-menu li.disable:focus a {
+    color: #b5b1b1 !important;
+}
+
+
+/*Toottip css starts here*/
+.hasInfo {position: relative;}
+        .helpIcon {
+            background: transparent none repeat scroll 0 0;
+            border: 0 none;
+            font-size: 19px;
+            left: 100%;
+            margin-left: 10px;
+            margin-top: -11px;
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            color: #ccc;
+            font-family: "Conv_AvenirLTStd-Light";
+        }  
+        .hasInfo .tooltip .tooltip-inner {
+            min-width: 272px;
+            padding: 7px 10px;
+            text-align: center;
+        }
+        .tooltip.top .tooltip-arrow {border-top-color: #3e3e3e;}
+/*Tooltip css ends here*/
+
+
+/*For booking form tooltip strats here*/
+.bookingfrommarginleft{
+  margin-left: 5px !important;
+}
+/*For booking form tooltip ends here*/
+
+/*For adjust rainbow class start*/
+.indexHeader{
+top:0;
+}
+/*For adjust rainbow class end*/
+
+
+.downArrow{
+  pointer-events: none;
+}
+
+.seldrpdwn .dropdown-menu.inner {
+    max-height: 200px !important;
+}
+
+.exp_dates_cct .dropdown-menu.inner {
+    max-height: 150px !important;
+}
+
+.myaccanchr{
+  color: black !important;
+  font-weight: bold;
+}
+
+.mrgnbtm_myaccnote{
+margin-bottom:20px;
+}
+
+.mrgnbtm_myaccnote a:hover {
+    color: #64d0e4;
+}
+.sttccolr{
+  color:black;
+}
+
+.myaccpaddingtopcls{
+  padding-top: 15px !important;
+}
+
+
+/*For Error message icon class starts here 04-01-2017*/
+#toast-container > .toast-error {
+   background-image: none !important;
+}
+.toast-close-button {
+    right: 0;
+    top: -0.2em;
+}
+/*For Error message icon class ends here 04-01-2017*/
+
+/*   For radio button in negotiation section starts here*/
+
+#reqmodal4 .radio_Check span {
+    font-size: 13px;
+}
+/*   For radio button in negotiation section ends here*/
+
+/*For Error message icon class starts here 14-01-2017*/
+#toast-container > div{
+     padding: 20px 15px 13px 50px;
+     border-radius: 0;
+}
+#toast-container.toast-bottom-full-width > div, #toast-container.toast-top-full-width > div{
+    width: 100%;
+}
+/*For Error message icon class ends here 14-01-2017*/
+
+
+/* For Negotiation modal header color change starts here 23-01-2017*/
+  
+
+.negotiationmodaltopcolor{
+  background-color: rgb(241,196,15) !important;
+}
+  
+/* For Negotiation modal header color change ends here 23-01-2017*/
+
+
+/****************************** for responsive starts ********************/
+
+@media (max-width: 1300px) {
+	
+}
+
+@media (max-width: 1280px) {
+	
+}
+@media (max-width:1199px) {
+	
+}
+@media (max-width:991px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 140px;
+        margin-left: -70px;
+        }
+    
+    .pagination_outer_cust li a {
+        min-width: 25px;
+        padding: 5px 4px;
+    }
+	
+}
+@media (max-width: 800px) {
+	
+}
+@media (max-width:767px) {
+	.mac-os #myModal3paymentview .popup-close {
+        top: 7px;
+    }
+}
+
+@media (max-width: 480px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 110px;
+        margin-left: -55px;
+        }
+    .pagination_outer_cust li a {
+        font-size: 12px;
+    }
+    
+    
+}
+@media (max-width: 360px) {
+    .pagination_outer_cust li a {
+        font-size: 11px;
+    }
+    .pagination_outer_cust li a {
+        min-width: 15px;
+        padding: 3px 2px;
+    }
+}
+
+
+/***************************** for responsive ends *********************/

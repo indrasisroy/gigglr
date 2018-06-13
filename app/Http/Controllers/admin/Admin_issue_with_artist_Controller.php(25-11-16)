@@ -1,0 +1,391 @@
+<?php
+namespace App\Http\Controllers\admin;
+use Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use DB;
+use Illuminate\Routing\Route;
+use Mail;
+use App\Customlibrary\Imageuploadlib;
+use View;
+class Admin_issue_with_artist_Controller extends Controller
+{       
+        public function index(Request $request ){
+                
+            $data=array();
+            $useinPagiAr=array();           
+            $srch1=addslashes(trim($request->input('srch1','')));
+            $sort1=addslashes(trim($request->input('sort1','')));
+            $sorttype1=addslashes(trim($request->input('sorttype1','')));
+            
+            if(!empty($srch1))
+            {
+                $useinPagiAr['srch1']=trim($srch1);  
+            }            
+            if(!empty($sort1))
+            {
+                $useinPagiAr['sort1']=trim($sort1);  
+            }           
+            if(!empty($sorttype1))
+            {
+                $useinPagiAr['sorttype1']=trim($sorttype1);  
+            }
+            
+            $successmsgdata=$request->session()->get('admin_successmsgdata_sess');
+            $errormsgdata=$request->session()->get('admin_errormsgdata_sess');      
+            if(!empty($successmsgdata)){
+              $data['successmsgdata']=$successmsgdata;
+            }
+            if(!empty($errormsgdata)){
+                $data['errormsgdata']=$errormsgdata;               
+            }
+            
+            $countries_db = DB::table('resolve_dispute as rd')
+                ->Join('user_master as um', function($join)
+                {
+                        $join->on('um.id','=','rd.dispute_opener_id');
+                })
+                ->Join('gig_master as gm', function($join)
+                {
+                        $join->on('gm.id','=','rd.gig_id');
+                })
+                ->select('rd.id','rd.gig_name','rd.dispute_opener_id','rd.gig_id','rd.gig_unique_id','rd.dispute_opening_date','rd.dispute_type','rd.issue_description','rd.arrival','rd.arrival_time','rd.required_specifications_availability','rd.able_to_complete','rd.technical_issue','rd.receive_rider','rd.leave_early','rd.leaving_time','gm.artist_id','um.email','um.nickname','um1.email as artist_email','um1.nickname as artist_nickname')
+                
+                ->Join('user_master as um1', function($join)
+                {
+                        $join->on('gm.artist_id','=','um1.id');
+                })
+                
+                ->where(function($query) use ($srch1){
+                        if(!empty($srch1)){
+                                
+                            $query->where('rd.gig_name', 'like', "%".$srch1."%");
+                        }
+                        
+                })->where('rd.dispute_type','1');
+                
+                $all_data = $countries_db->get();
+           
+                if(!empty($sort1) && !empty($sorttype1) && (in_array(strtoupper($sorttype1),array('ASC','DESC'))))
+                {
+                      $countries_db=$countries_db->orderBy('rd.'.$sort1, $sorttype1);
+                }
+                       
+                $pagi_country=$countries_db;    
+                $pagelimit=1;
+                $staterow = DB::table('settings as st')->select(DB::raw('st.id,st.record_per_page_admin'))->where('st.id', 1)->first();                      
+                if(!empty($staterow))
+                {
+                    $pagelimit=$staterow->record_per_page_admin;
+                }
+                $pagi_country = $pagi_country->paginate($pagelimit);
+                $pagi_country->setPath(url(ADMINSEPARATOR.'/admin_issue_with_artist'));          
+                $data['pagi_country']=$pagi_country;
+                $data['useinPagiAr']=$useinPagiAr;
+                $data['first_sql']=$all_data;
+              
+               return view('admin.admin_issue_with_artist.admin_issue_with_artist_list', $data);
+        }
+        
+        public function view(Request $request,$id=0){
+           
+            $countries_db = DB::table('resolve_dispute as rd')
+            
+                ->Join('user_master as um', function($join)
+                {
+                        $join->on('um.id','=','rd.dispute_opener_id');
+                })
+                ->Join('gig_master as gm', function($join)
+                {
+                        $join->on('gm.id','=','rd.gig_id');
+                })
+                ->select('rd.id','rd.gig_name','rd.dispute_opener_id','rd.gig_id','rd.gig_unique_id','rd.dispute_opening_date','rd.dispute_type','rd.issue_description','rd.arrival','rd.arrival_time','rd.required_specifications_availability','rd.able_to_complete','rd.technical_issue','rd.receive_rider','rd.leave_early','rd.leaving_time','gm.artist_id','um.email','um.nickname','um1.email as artist_email','um1.nickname as artist_nickname')
+                
+                ->Join('user_master as um1', function($join)
+                {
+                        $join->on('gm.artist_id','=','um1.id');
+                })
+                
+                ->where('rd.dispute_type','1')->where('rd.id',$id);
+                
+                $all_data = $countries_db->first();
+                $pagi_country=$all_data;
+                $data['pagi_country']=$pagi_country;
+          
+                return view('admin.admin_issue_with_artist.admin_issue_with_artist_list_view', $data);
+        }
+    
+        public function reply_view(Request $request,$id=0){
+                
+          $countries_db = DB::table('resolve_dispute as rd')
+            
+                ->Join('user_master as um', function($join)
+                {
+                        $join->on('um.id','=','rd.dispute_opener_id');
+                })
+                ->Join('gig_master as gm', function($join)
+                {
+                        $join->on('gm.id','=','rd.gig_id');
+                })
+                ->select('rd.id','rd.gig_name','rd.dispute_opener_id','rd.gig_id','rd.gig_unique_id','rd.dispute_opening_date','rd.dispute_type','rd.issue_description','rd.arrival','rd.arrival_time','rd.required_specifications_availability','rd.able_to_complete','rd.technical_issue','rd.receive_rider','rd.leave_early','rd.leaving_time','gm.artist_id','um.email','um.nickname','um1.email as artist_email','um1.nickname as artist_nickname')
+                
+                ->Join('user_master as um1', function($join)
+                {
+                        $join->on('gm.artist_id','=','um1.id');
+                })
+                
+                ->where('rd.dispute_type','1')->where('rd.id',$id);
+                
+                $all_data = $countries_db->first();
+                $pagi_country=$all_data;
+                //echo '<pre>'; print_r($all_data); exit;
+                //------------for listing of repli messeges----------//
+                
+           $all_reply_data = DB::table('resolve_dispute_replies as rdr')
+                        ->Join('user_master as um', function($join) 
+                                {
+                                     $join->on('um.id','=','rdr.replied_by');
+                                        
+                                })
+                        ->select('rdr.*','um.nickname as reply_by_user')
+                        ->where('rdr.resolve_dispute_id',$id);
+                $all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take(4)->get();
+                $total_data = $all_reply_data->count();
+                //echo '<pre>'; print_r($all_data_get);exit;
+                //------------------END-----------------------//
+                $data['pagi_country']=$pagi_country;
+                $data['reply_messeges']=$all_data_get;
+                $data['total_data']=$total_data;
+           return view('admin.admin_issue_with_artist.admin_issue_with_artist_reply_view', $data);
+           //echo '<pre>';print_r($data);exit;
+        }
+     public function reply(Request $request)
+        {
+                
+                $description = $request->input('description');
+                $last_row = $request->input('last_row');
+                $resolve_dispute_id = $request->input('resolve_dispute_id');
+                $gig_id = $request->input('gig_id');
+                $gig_unique_id = $request->input('gig_unique_id');
+                $booker_id = $request->input('booker_id');
+                $artist_id = $request->input('artist_id');
+                $booker_ID = $request->input('booker_ID');
+                $artist_ID = $request->input('artist_ID');
+                
+                //------getting the booker emailID-------//
+                $booker_useremail = DB::table('user_master')->select('email','nickname')->where('id', $booker_id)->first();
+                if(count($booker_useremail) > 0){
+                        
+                      $booker_ori_email = $booker_useremail->email;
+                     //$booker_ori_email = 'sutirtha.nazir@esolzmail.com';
+                      $booker_ori_nikname = $booker_useremail->nickname;
+                      //echo $gig_id.'     '.$booker_ori_nikname;exit;
+                }else{
+                        echo'Probably booker is deleted';exit;
+                }
+                //---------END-----------------//
+                
+                //------getting the artist emailID-------//
+                $artist_useremail = DB::table('user_master')->select('email','nickname')->where('id', $artist_id)->first();
+                if(count($artist_useremail) > 0){
+                      $artist_ori_email = $artist_useremail->email;
+                      $artist_ori_nikname = $artist_useremail->nickname;
+                }else{
+                         echo'Probably artist is deleted';exit;
+                }
+                //---------END-----------------//
+                
+                //------getting the gig detail-------//
+                $gigdetails = DB::table('gig_master')->select('event_start_date_time','event_city')->where('id', $gig_id)->first();
+                if(count($gigdetails) > 0){
+                      $event_start_date_time = $gigdetails->event_start_date_time;
+                      $event_start_date = date('d/m/Y h:i A',strtotime($event_start_date_time));
+                      $event_city = $gigdetails->event_city;
+                }
+                //---------END-----------------//
+                
+                //------getting details from settings for mail--------//
+                $userssel = DB::table('settings')
+                ->select(DB::raw('site_name,email_from,copyright_year,email_template_logo_image'))
+                ->where('id', 1)->get();
+                $sitename=$userssel[0]->site_name;
+                $emailfrom=$userssel[0]->email_from;
+                $copyright_year=$userssel[0]->copyright_year;
+                $Imgologo=$userssel[0]->email_template_logo_image;
+                $bsurl = url('/');
+                $logoIMG = BASEURLPUBLICCUSTOM.'upload/settings-image/source-file/'.$Imgologo;
+                //------END---------------------------//
+                
+                //---------getting the dispute date--------//
+                $dispuTE_Date = DB::table('resolve_dispute')->select('dispute_opening_date')->where('id', $resolve_dispute_id)->first();
+                if(count($dispuTE_Date) > 0){
+                      $DisputeDatenor = $dispuTE_Date->dispute_opening_date;
+                      $DisputeDate = date('d/m/Y h:i A',strtotime($DisputeDatenor));
+                    
+                }
+                //--------END-----------------//
+                
+               //-----------Createing datainsert arrey for insert into resolve_dispute_replies table--------//
+                $dataInsert = array(
+                             'resolve_dispute_id'=>$resolve_dispute_id,
+                             'gig_id'=>$gig_id,
+                             'gig_unique_id'=>$gig_unique_id,
+                             'dispute_type'=>'1',
+                             'replied_by'=>'1',
+                             'reply_date'=>date('Y-m-d H:i:s'),
+                             'reply_content'=>$description
+                        );
+                //------------------------END---------------------------------------------//
+                
+                //--------------------Condition for replied_to_1 and replied_to_2---------//
+                if($booker_ID != '' && $artist_ID==''){
+                        $dataInsert['replied_to_1']= $booker_ID;
+                        
+                        $dataInserted = DB::table('resolve_dispute_replies')->insert($dataInsert);
+                                if($dataInserted){
+                                        //-----Mail send Function Starts here for booker--------//
+                                        $replacefrom =array('{LOGO_IMG}','{BASE_URL}','{USER}','{DISPUTEDATE}','{ARTIST}','{STARTDATE}','{TOWN}','{REPLYCONTENT}','{SITENAME}','{YEAR}');
+                                             $replaceto =array($logoIMG,$bsurl,$booker_ori_nikname,$DisputeDate,$artist_ori_nikname,$event_start_date,$event_city,$description,$sitename,$copyright_year);
+                                        $sendMail =  mailsnd($Temid=30,$replacefrom,$replaceto,$booker_ori_email);
+                                        //-----END------------------------------//
+                                        
+                                        //----------Appending the data in the reply section---------//
+                                         $all_reply_data = DB::table('resolve_dispute_replies as rdr')
+                                                ->Join('user_master as um', function($join) 
+                                                        {
+                                                             $join->on('um.id','=','rdr.replied_by');
+                                                                
+                                                        })
+                                                ->select('rdr.*','um.nickname as reply_by_user')
+                                                ->where('rdr.resolve_dispute_id',$resolve_dispute_id);
+
+                                        //$all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take($last_row+1)->get();
+                                        $all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take(4)->get();
+                                        $data['reply_messeges']=$all_data_get;
+                                        $data['pannel']=0;
+                                        $view_obj = View::make('admin.admin_issue_with_artist.admin_issue_artist_render_page',$data);
+                                        $contents = $view_obj->render();  
+                                        
+                                        $respdataAr=array();
+                                        
+                                        $respdataAr['reply_content']=$contents;
+                                        echo json_encode($respdataAr);
+                                        
+                                        //----------------------END---------------------------------//
+                                }
+                        
+                        
+                }elseif($artist_ID != '' && $booker_ID==''){
+                        
+                        $dataInsert['replied_to_2']= $artist_ID;
+                        $dataInserted = DB::table('resolve_dispute_replies')->insert($dataInsert);
+                        if($dataInserted){
+                                
+                                 //-----Mail send Function Starts here for artist--------//
+                                $replacefrom =array('{LOGO_IMG}','{BASE_URL}','{USER}','{BOOKERNAME}','{DISPUTEDATE}','{SELF}','{STARTDATE}','{TOWN}','{REPLYCONTENT}','{SITENAME}','{YEAR}');
+                                $replaceto =array($logoIMG,$bsurl,$artist_ori_nikname,$booker_ori_nikname,$DisputeDate,'performed by you',$event_start_date,$event_city,$description,$sitename,$copyright_year);
+                                $sendMail =  mailsnd($Temid=31,$replacefrom,$replaceto,$artist_ori_email);
+                                //-----END------------------------------//
+                                         
+                                //----------Appending the data in the reply section---------//
+                                 $all_reply_data = DB::table('resolve_dispute_replies as rdr')
+                                        ->Join('user_master as um', function($join) 
+                                                {
+                                                     $join->on('um.id','=','rdr.replied_by');
+                                                        
+                                                })
+                                        ->select('rdr.*','um.nickname as reply_by_user')
+                                        ->where('rdr.resolve_dispute_id',$resolve_dispute_id);
+
+                                //$all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take($last_row+1)->get();
+                                $all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take(4)->get();
+                                $data['reply_messeges']=$all_data_get;
+                                $data['pannel']=0;
+                                $view_obj = View::make('admin.admin_issue_with_artist.admin_issue_artist_render_page',$data);
+                                $contents = $view_obj->render();  
+                                
+                                $respdataAr=array();
+                                
+                                $respdataAr['reply_content']=$contents;
+                                echo json_encode($respdataAr);
+                        }
+                }elseif($booker_ID != '' && $artist_ID != ''){
+                        $dataInsert['replied_to_1']= $booker_ID;
+                        $dataInsert['replied_to_2']= $artist_ID;
+                        
+                        $dataInserted = DB::table('resolve_dispute_replies')->insert($dataInsert);
+                        if($dataInserted){
+                                //-----Mail send Function Starts here for booker--------//
+                                $replacefrom =array('{LOGO_IMG}','{BASE_URL}','{USER}','{DISPUTEDATE}','{ARTIST}','{STARTDATE}','{TOWN}','{REPLYCONTENT}','{SITENAME}','{YEAR}');
+                                $replaceto =array($logoIMG,$bsurl,$booker_ori_nikname,$DisputeDate,$artist_ori_nikname,$event_start_date,$event_city,$description,$sitename,$copyright_year);
+                                $sendMail =  mailsnd($Temid=30,$replacefrom,$replaceto,$booker_ori_email);
+                                //-----END------------------------------//
+                                
+                                //-----Mail send Function Starts here for artist--------//
+                                $replacefrom =array('{LOGO_IMG}','{BASE_URL}','{USER}','{BOOKERNAME}','{DISPUTEDATE}','{SELF}','{STARTDATE}','{TOWN}','{REPLYCONTENT}','{SITENAME}','{YEAR}');
+                                     $replaceto =array($logoIMG,$bsurl,$artist_ori_nikname,$booker_ori_nikname,$DisputeDate,'performed by you',$event_start_date,$event_city,$description,$sitename,$copyright_year);
+                                $sendMail2 =  mailsnd($Temid=31,$replacefrom,$replaceto,$artist_ori_email);
+                                //-----END------------------------------//
+                                
+                                          
+                                //----------Appending the data in the reply section---------//
+                                 $all_reply_data = DB::table('resolve_dispute_replies as rdr')
+                                        ->Join('user_master as um', function($join) 
+                                                {
+                                                     $join->on('um.id','=','rdr.replied_by');
+                                                        
+                                                })
+                                        ->select('rdr.*','um.nickname as reply_by_user')
+                                        ->where('rdr.resolve_dispute_id',$resolve_dispute_id);
+
+                                //$all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take($last_row+1)->get();
+                                $all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip(0)->take(4)->get();
+                                $data['reply_messeges']=$all_data_get;
+                                $data['pannel']=0;
+                                $view_obj = View::make('admin.admin_issue_with_artist.admin_issue_artist_render_page',$data);
+                                $contents = $view_obj->render();  
+                                
+                                $respdataAr=array();
+                                
+                                $respdataAr['reply_content']=$contents;
+                                echo json_encode($respdataAr);
+                        }
+                }
+                //------------------------------END-------------------------------------//
+          
+           
+        }
+        public function load_more(Request $request){
+                
+                $next_limit = $request->input('limit');
+		$resolve_dispute_id = $request->input('resolve_dispute_id');
+		
+		//----------Appending the data in the reply section---------//
+                        $all_reply_data = DB::table('resolve_dispute_replies as rdr')
+                               ->Join('user_master as um', function($join) 
+                                       {
+                                            $join->on('um.id','=','rdr.replied_by');
+                                               
+                                       })
+                               ->select('rdr.*','um.nickname as reply_by_user')
+                               ->where('rdr.resolve_dispute_id',$resolve_dispute_id);
+                       $all_data_get = $all_reply_data->orderby('rdr.id','DESC')->skip($next_limit)->take(4)->get();
+                       $count = $all_reply_data->count();
+                       
+                       $data['reply_messeges']=$all_data_get;
+                       $data['pannel']=0;
+                       
+                        $view_obj = View::make('admin.admin_issue_with_artist.admin_issue_artist_render_page',$data);
+                        $contents = $view_obj->render();  
+                        
+                        $respdataAr=array();
+                        
+                        $respdataAr['reply_content']=$contents;
+                        echo json_encode($respdataAr);
+				
+
+        }
+    
+}
+        ?>

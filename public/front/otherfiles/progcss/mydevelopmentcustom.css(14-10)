@@ -1,0 +1,590 @@
+.marginbottom5{
+    
+    margin-bottom:5px; 
+    
+}
+.marginbottom10{
+    
+    margin-bottom:10px; 
+    
+}
+.marginbottom20{
+    
+    margin-bottom:20px; 
+    
+}
+.marginbottom30{
+    
+    margin-bottom:30px; 
+    
+}
+
+.margintop5{
+    
+    margin-top:5px; 
+    
+}
+.margintop10{
+    
+    margin-top:10px; 
+    
+}
+.margintop20{
+    
+    margin-top:20px; 
+    
+}
+.margintop30{
+    
+    margin-top:30px; 
+    
+}
+
+.mydisplaynone{
+    display: none;
+}
+
+.mydisplayblock{
+    display: block;
+}
+.mytextcenter{
+    text-align:center;
+}
+
+.myerrorcolor{
+    color: #ff141e;
+}
+
+.myitalicclass{
+    font-style: italic;
+}
+
+
+/*** for frontend roster left panel - starts ***/
+
+.scrollforrosterleftclass{
+   /* height: 276px;*/
+    max-height: 318px;
+    overflow-y: auto;
+}
+
+.activepanecolorforrosterleftclass{
+    background-color: #ff635c !important;
+    color: white !important;
+}
+
+.rrostr{
+    margin-top:30px !important;
+}
+
+.marginleft25{
+    
+    margin-left:25px; 
+    
+}
+
+.rosterlefticonclass{
+    top: 22px;
+    position: relative;
+}
+
+.rosterleftextraiconclass {
+    color: white;
+}
+.cal_setting_txtcls{
+    color: white;
+}
+/*** for frontend roster left panel - ends ***/
+
+
+/*** for frontend roster five image icons - starts ***/
+
+.yellowclockdev{
+    
+     background: rgba(0, 0, 0, 0) url("../../images/home_icon.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.redclockdev{
+     background: rgba(0, 0, 0, 0) url("../../images/clock-red.png") no-repeat scroll 0 6px;
+    width:15px;
+}
+
+.yellowstardev{
+     background: rgba(0, 0, 0, 0) url("../../images/yellow_star.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.yellowgreystardev{
+     background: rgba(0, 0, 0, 0) url("../../images/Star.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.bluebookdev{
+     background: rgba(0, 0, 0, 0) url("../../images/book_blue.png") no-repeat scroll 0 6px;
+    width:15px;
+}
+
+.purpleboxdev{
+    background: rgba(0, 0, 0, 0) url("../../images/box_icon.png") no-repeat scroll 0 6px;
+   width:15px;
+}
+
+.zoomicondev{
+    background: rgba(0, 0, 0, 0) url("../../images/zoom_icon.png") no-repeat scroll 0 6px;
+    cursor: pointer;
+}
+
+.blackstardev{
+     background: rgba(0, 0, 0, 0) url("../../images/star_icon.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+.greengigdev{
+     background: rgba(0, 0, 0, 0) url("../../images/box_icon-green.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.eventfankdev{
+     background: rgba(0, 0, 0, 0) url("../../images/heart_icon2.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.eventgenredev{
+     background: rgba(0, 0, 0, 0) url("../../images/user.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+
+
+.eventtowndev{
+     background: rgba(0, 0, 0, 0) url("../../images/home.png") no-repeat scroll 0 6px;
+     width:15px;
+}
+/*** for frontend roster five image icons - ends ***/
+
+/***** for favorite like  heart button active starts ****/
+ .proflhearbuttonactv{
+    background: #fbda66 !important;
+ }
+/***** for favorite like  heart button active ends****/
+
+/*****  for calendar starts ******/
+
+.fc-ltr .fc-basic-view .fc-day-number {
+padding: 15px 6px 6px;
+text-align: center !important;
+font-size: 20px;
+}
+
+.redclockdev, .purpleboxdev, .yellowstardev,.yellowgreystardev,.blackstardev, .bluebookdev ,.yellowclockdev ,.greengigdev ,.eventfankdev, .eventgenredev, .eventtowndev  {
+margin: 0 2px;
+display: inline-block;
+vertical-align: middle;
+background-position: center center !important;
+}
+
+.zoomicondev {
+padding: 6px 12px;
+background-position: center center !important;
+display: inline-block;
+}
+.fc-more-cell > div {display: none !important}
+
+.commoncustrowclass {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    text-align: center;
+}
+.fc-row .fc-content-skeleton {
+    padding-bottom: 23px !important;
+}
+.fc-content-skeleton tr td {
+    position: relative;
+}
+
+.fc-scroller.fc-day-grid-container {
+    height: auto !important;
+    overflow: inherit !important;
+}
+.fc-row {
+height: auto !important;
+}
+/*****  for calendar ends ******/ 
+
+/********** edit profile image upload progress bar starts ****************/
+
+.userprofimgprogress 
+{
+  display:none; 
+  position:relative; 
+  width:400px; 
+  border: 1px solid #ddd; 
+  padding: 1px; 
+  border-radius: 3px;
+  background-color: #CED2D9;
+}
+.userprofimgbar 
+{ 
+  background-color: #276CBE; 
+  width:0%; 
+  height:20px; 
+  border-radius: 3px; 
+}
+
+.userprofimgpercent {
+position: absolute;
+display: inline-block;
+top: 3px;
+left: 0;
+right: 0;
+text-align: center;
+}
+
+
+
+.progressbarouter {
+position: relative;
+}
+.progressbarouter .userprofimgprogress {
+position: absolute;
+z-index: 9;
+width: 200px;
+left: 50%;
+margin-left: -100px;
+bottom: 10px;
+bottom: 28px;
+}
+
+/**** for loading opaque starts ********/
+.showloder{
+    display : block;
+    position : fixed;
+    z-index: 9999999999999999999999;
+    /*background-image : url('http://prosessionalbeta.in/front/otherfiles/progimages/bookingloder.gif');*/
+    background-color:#000000;
+    opacity : 0.95;
+    background-repeat : no-repeat;
+    background-position : center;
+    left : 0;
+    bottom : 0;
+    right : 0;
+    top : 0;
+}
+
+
+#loadercustomtxt {
+font-size: large;
+font-family: monospace;
+left: 0;
+/* line-height: 160px; */
+margin: auto;
+position: absolute;
+ padding-top: 100px;
+width: 100%;
+opacity: 0.7;
+text-align: center;
+color: #fff;
+}
+
+#divLoading {
+    background-color: rgba(0, 0, 0, 0.9);
+    background-position: center center;
+    background-repeat: no-repeat;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    text-align: center;
+    padding-top:200px;
+}
+/**** for loading opaque ends *********/
+
+/**** for ajax pagination starts *******/
+.pagination_outer_cust {
+	text-align: center;
+	margin: 15px 0;
+}
+.pagination_outer_cust li{
+	display: inline-block;
+	margin: 0 2px;
+}
+.pagination_outer_cust li a{
+	display: block;
+	padding:8px 10px;
+	border-radius: 3px;
+	background: #ebebeb;
+	font-size: 14px;
+	color:#556270;
+	font-weight: bold;
+	line-height: 13px;
+	text-decoration: none;
+}
+.pagination_outer_cust li:hover a, .pagination_outer_cust li.active a{
+	background: #4c4c4c;
+	color:#fff;
+}
+.pagination_outer_cust li.prev-nev a, .pagination_outer_cust li.next-nev a{
+	background: none;
+	padding: 8px 10px;
+}
+.pagination_outer_cust li.prev-nev:hover a, .pagination_outer_cust li.next-nev:hover a{
+	color:#556270;
+}
+/**** for ajax pagination ends *******/
+
+
+
+/********** edit profile image upload progress bar ends ****************/
+
+/******************FOR ERROR MESSAGE CLASS STARTS HERE***************************/
+/*.authError{
+    border-color: red;
+    color: red;
+}*/
+
+.artist_list {
+position: relative;
+}
+span.authError {
+color: red !important;
+font-size: 13px !important;
+font-family: 'Conv_AvenirLTStd-Light' !important;
+position: absolute;
+top: 100%;
+background: #fff;
+padding: 6px;
+z-index: 9;
+border-radius: 4px;
+box-shadow: 0 0 3px 1px rgba(0,0,0,0.2);
+right: 0;
+}
+span.authError:after,span.authError:before {
+bottom: 100%;
+right: 15px;
+border: solid transparent;
+content: " ";
+height: 0;
+width: 0;
+position: absolute;
+pointer-events: none;
+}
+
+span.authError:before {
+border-color: rgba(221, 221, 221, 0);
+border-bottom-color: #ddd;
+border-width: 11px;
+margin-left: -11px;
+}
+span.authError:after {
+border-color: rgba(255, 255, 255, 0);
+border-bottom-color: #fff;
+border-width: 10px;
+margin-left: -10px;
+}
+
+
+
+/*******************FOR ERROR MESSAGE CLASS ENDS HERE****************************/
+
+/*******map*/
+
+.mapclass{
+  height:500px;
+  width:100%;
+}
+/*****map***/
+
+/*This section is for form control last added on 21-07-2016*/
+.from-control-custom{
+position: relative;
+}
+/**********For error class in textarea starts 21-07-2016 starts*************/
+.posRltv {
+position: relative;
+}
+/**********For error class in textarea starts 21-07-2016 ends*************/
+.clck.clickable {
+pointer-events: inherit !important;
+}
+.dj_row.editable {
+height: 200px;
+}
+/***************For menu style 21-07-2016 starts*****************/
+.menu_cstm .dropdown-menu > li > a:hover, .menu_cstm .dropdown-menu > li > a:focus {
+/*    background-color: rgba(56,56,56,0.9);*/
+    background: transparent;
+}
+.menu_cstm .dropdown-menu {
+text-align: center;
+}
+/***************For menu style 21-07-2016 ends*****************/
+
+/**********added by dhiman 11-07-16 start*******/
+.btn.btn-warning.reqst_btn_dvlr {
+    width: 159px;
+}
+.btn.btn-warning.reqst_btn_dvlr_negotiated {
+    width: 159px;
+}
+.btn.btn-warning.reqst_btn_dvlr_cancel {
+    width: 159px;
+    background: #ff0000;
+}
+.btn.btn-warning.artist_btn_can:hover{
+    background-color:#FA3636;
+}
+.btn.btn-warning.reqst_btn_dvlr_accept {
+    width: 159px;
+    background: #156315;
+}
+.btn.btn-warning.artist_btn_acpt:hover{
+    background-color:#1E7A2C;
+}
+/**********added by dhiman 11-07-16 end*******/
+
+/*************************For venue edit section starts 22-07-2016************************************/
+.containerchkbox {
+      border:2px solid #ccc;      
+      padding: 24px 0 24px 50px;
+          min-height: 235px;
+    }
+    .amenitiesCheckScroll {
+      overflow-y: auto;
+      max-height: 186px;
+      /*padding-right: 24px;*/
+    }
+    .containerchkbox .amenitiesCheck {
+      width: 48%;
+      padding-right: 6px;
+      padding-left: 6px;
+      margin-bottom: 5px;
+      
+    }
+    .amenitiesCheck.radio-check input[type="checkbox"] + span {
+      background-color: transparent;
+      border-radius: 0;
+      border-color: #ccc;
+    }
+    .tttyyyyyy{
+      margin-left: -23px;
+
+    }
+    .amenitiesCheck img
+    {
+    margin-left: 6px;
+    }
+    .amnt-img{
+      width:17px;
+      height:14px;
+    }
+    .nodatacustlftclass {
+        
+        color: #fff;
+        font-size: 16px;
+       
+        
+        
+    }
+/*************************For venue edit section ends 22-07-2016************************************/
+
+/******** used in public profile  page to  show deactive on button ********/
+.deactive {
+
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.7;
+
+}
+/******** used in public profile  page to  show deactive on button ********/
+
+/***** for opacity in confoirm box starts*******/
+.jconfirm-bg{
+    opacity:1 !important;
+    
+}
+/***** for opacity in confoirm box ends*******/
+
+/************* added in 29-08 start *************/
+.event_list li:after, .event_list li:before {
+
+    content: "";
+
+    display: table;
+
+}
+
+.event_list li:after {
+
+    clear: both;
+
+}
+
+img.rosterlefticonclass {
+
+    margin-top: 4px;
+
+    position: inherit;
+
+    float: left;
+
+    margin-right: 5px;
+
+}
+
+.event_list li a {
+
+    padding-left: 0;
+
+    overflow: hidden;
+
+}
+/************* added in 29-08 end *************/
+
+/****************************** for responsive starts ********************/
+
+@media (max-width: 1300px) {
+	
+}
+
+@media (max-width: 1280px) {
+	
+}
+@media (max-width:1199px) {
+	
+}
+@media (max-width:991px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 140px;
+        margin-left: -70px;
+        }
+	
+}
+@media (max-width: 800px) {
+	
+}
+@media (max-width:767px) {
+	
+}
+
+@media (max-width: 480px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 110px;
+        margin-left: -55px;
+        }
+    
+}
+@media (max-width: 360px) {
+            
+            .
+}
+
+/***************************** for responsive ends *********************/

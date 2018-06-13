@@ -1,0 +1,317 @@
+/*css*/
+
+.inline.artist_list.request_type + .request_type {
+margin-top: 10px;
+}
+
+.datepickerWrap {
+display: inline-block;
+vertical-align: middle;
+position: relative;
+}
+
+
+    /*for date picker in honme page starts */
+    .bootstrap-datetimepicker-widget {
+    color: #333;
+    background: #fff; padding: 6px;   
+    min-width: 220px;
+    }
+    .bootstrap-datetimepicker-widget table {
+    width: 100%;
+    }
+
+
+    .hmsrchbookdate {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    cursor: pointer;
+    padding: 0;
+    }
+    .datepickerWrap {margin-left: 15px;}
+    .datepickerWrap .calendarOpen {
+    margin-left: 0 !important;
+    /*position: relative;
+    z-index: 9; */
+    }
+	
+/*for date picker in honme page ends */
+
+/* for review start */
+ .person {
+    max-height: 110px;
+    width: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    padding: 5px;
+}
+.person img {
+    box-shadow: 0 0 1px 8px #f8f8f8;
+    -webkit-box-shadow: 0 0 1px 8px #f8f8f8;
+}
+#reviewPopup .prifile_heading {
+    font-size: 26px;
+    line-height: 1;
+    margin-top: 24px;
+    text-align: center;
+    display: inherit;
+}
+#reviewPopup .rating-sm {
+    font-size: 1.1em;
+    margin-top: 12px;
+}
+#reviewPopup .rank_cell {
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+#reviewPopup .rating-container .star {margin: 0 1px;}
+#reviewPopup .star_cell {
+    line-height: normal;
+}
+#reviewPopup .caption {display: none;}
+#reviewPopup  .glyphicon-star-empty:before {
+    /*content: "\e006";*/
+   content: url(../images/star_icon-blank.png);
+}
+#reviewPopup  .filled-stars .glyphicon-star:before {
+   content: url(../images/star_icon.png);
+}
+#reviewPopup  .rating-container .empty-stars {
+    color: #aeafb1;
+}
+#reviewPopup  .rating-container .filled-stars {
+    color: #272725;
+    transition: all 0s ease-in-out;
+    -moz-transition: all 0s ease-in-out;
+    -webkit-transition: all 0s ease-in-out;
+    -ms-transition: all 0s ease-in-out;
+    -o-transition: all 0s ease-in-out;
+}
+.leavRvwTime {
+    background: #f8f8f8;
+    padding: 6px 10px;
+    margin-bottom: 20px;
+}
+.leavRvwTime .review_date li {
+    font-size: 15px;
+    padding-right: 10px;
+    margin-right: 7px;
+}
+.leavRvwTime .form_right {font-size: 15px;}
+
+/**/
+.profileImgSec, .ratingSec {
+    float: left;
+    padding-left: 15px;padding-right: 15px;
+    width: 100%;
+}
+
+.btn.btn-warning.rqst_trm_btn.btn-pink {background: #ff6364;border-color:#ff6364;}
+.btn.btn-warning.rqst_trm_btn.btn-pink:hover{
+    border-color: #e64d4e;
+    background: #e64d4e;
+}
+#reviewPopup textarea.form-control {
+    min-height: 200px;
+    line-height: 1.5;
+}
+
+
+        .hkj{
+            background-image: url(images/calender.png);
+            
+        }
+        .personC{
+            border: 10px solid #f8f8f8;
+            max-height: 168px;
+        }
+        .visitor_colsC{
+            margin-top: 15px;
+        }
+        .visitor_colsC .like_box a{
+            border: 1px solid #faa2ae;
+        }
+        .visitor_colsC .like_box a.add_link{
+            border: 4px solid #fef3cc;
+        }
+        .visitor_colsC .like_box{
+            margin-bottom: 20px;
+        }
+        .star_cellC{
+            text-align: center;
+        }
+/*
+        .star_cellC span{
+            padding: 14px 0 10px;   
+        }
+*/
+        .btn_row .btn.btn-warning.artist_btn{
+            font-size: 16px !important;
+            padding: 6px 10px;
+        }
+        #eventPopup .prifile_heading{
+            margin: 10px 0;
+            text-align: left;
+            display: inherit;
+            font-size: 35px;
+            line-height: 1;
+        }
+        .event-location{
+            background: #eeeeee;
+            border: 1px solid #cdcdcd;
+            border-radius: 3px;
+            padding: 10px 15px;
+            height: 150px;
+        }
+        .event-location h4{
+            margin-top: 0;
+            color: #000;
+            font-weight: bold;
+        }
+        .eventAddress {
+            padding: 0 10px;
+            max-width: 160px;
+            font-size: 14px;
+            color: #000;
+            font-weight: bold;
+            
+       }
+        .mapSec iframe{
+            height: 150px;
+            border: none;
+            width: 100%;
+        }
+
+
+@media(min-width:768px) {
+    .profileImgSec {
+        width: 45%;
+    }
+    .ratingSec {
+        width: 55%;
+    }
+}
+@media(max-width: 991px) {
+    #reviewPopup .star_cell {
+        width: 110px;
+        padding-top: 0;
+        text-align: center;
+    }
+}
+@media(max-width: 767px) {
+    #reviewPopup .prifile_heading {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .leavRvwTime {margin-top: 12px;}
+}
+/* for review end */
+
+/* for not wrpping when saved starts*/
+.link_edit .outPut {white-space: nowrap;}
+/* for not wrpping when saved ends*/
+span.dollar {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    color: #555;
+    z-index: 9;
+}
+span.dollar + .form-control {
+    padding-left: 20px;
+}
+.cal_setting_txtcls {
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    padding-top: 2px;
+}
+/*CSS Media Queries*/
+@media (max-width: 1199px) {	
+	
+}
+
+@media(min-width: 992px) {
+   .fc-row .fc-content-skeleton {
+       padding-bottom: 24px !important;
+   }
+   .fc-ltr .fc-basic-view .fc-day-number {
+       padding-top: 20px;
+   }
+}
+
+@media (max-width: 991px) {
+	.datepickerWrap .calendarOpen {width: 20px;}
+}
+
+@media(max-width:767px){
+    #eventPopup .prifile_heading{
+        font-size: 22px;
+        text-align: center;
+    }
+    .visitor_colsC{
+        margin-top: 10px;
+    }
+    .visitor_colsC .like_box{
+        margin-bottom: 14px;
+    }
+    .leavRvwTime{
+        margin: 10px 0;
+    }
+    .event-location{
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+     #eventPopup .profileImgSec, .ratingSec{
+        width: 50%;
+    }
+    .personC{
+        max-height: 124px;
+    }
+    .eventAddress{
+        max-width: 100%;
+    }
+    #eventPopup .artist_hedr{
+        padding: 10px 0;
+    }
+}
+@media (max-width: 600px) {
+             #eventPopup .profileImgSec, .ratingSec{
+                width: 100%;
+            }
+            #eventPopup .prifile_heading{
+                font-size: 18px;
+            }
+            .visitor_colsC{
+                margin-top: 0;
+            }
+            #eventPopup .popup-body h2{
+                font-size: 20px;
+            }
+            #eventPopup .visitor_cols, .visitor_cols2{
+                margin-bottom: 10px;
+            }
+}
+
+@media (max-width: 600px) {
+    span.dollar {
+        bottom: 18px;
+    }
+}
+@media (max-width: 500px) {
+	
+	
+}
+@media (max-width: 400px) {
+	
+}
+/* End */

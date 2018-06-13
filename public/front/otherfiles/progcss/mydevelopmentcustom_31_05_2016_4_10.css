@@ -1,0 +1,153 @@
+.marginbottom5{
+    
+    margin-bottom:5px; 
+    
+}
+.marginbottom10{
+    
+    margin-bottom:10px; 
+    
+}
+.marginbottom20{
+    
+    margin-bottom:20px; 
+    
+}
+.marginbottom30{
+    
+    margin-bottom:30px; 
+    
+}
+
+.margintop5{
+    
+    margin-top:5px; 
+    
+}
+.margintop10{
+    
+    margin-top:5px; 
+    
+}
+.marginbottom20{
+    
+    margin-top:20px; 
+    
+}
+.margintop30{
+    
+    margin-top:30px; 
+    
+}
+
+
+.mydisplaynone{
+    display: none;
+}
+
+.mydisplayblock{
+    display: block;
+}
+.mytextcenter{
+    text-align:center;
+}
+
+.myerrorcolor{
+    color: #ff141e;
+}
+
+.myitalicclass{
+    font-style: italic;
+}
+
+
+/********** edit profile image upload progress bar starts ****************/
+
+.userprofimgprogress 
+{
+  display:none; 
+  position:relative; 
+  width:400px; 
+  border: 1px solid #ddd; 
+  padding: 1px; 
+  border-radius: 3px; 
+}
+.userprofimgbar 
+{ 
+  background-color: #276CBE; 
+  width:0%; 
+  height:20px; 
+  border-radius: 3px; 
+}
+
+.userprofimgpercent {
+position: absolute;
+display: inline-block;
+top: 3px;
+left: 0;
+right: 0;
+text-align: center;
+}
+
+
+
+.progressbarouter {
+position: relative;
+}
+.progressbarouter .userprofimgprogress {
+position: absolute;
+z-index: 9;
+width: 200px;
+left: 50%;
+margin-left: -100px;
+bottom: 10px;
+bottom: 28px;
+}
+
+/********** edit profile image upload progress bar ends ****************/
+
+
+
+/****************************** for responsive starts ********************/
+
+@media (max-width: 1300px) {
+	
+}
+
+@media (max-width: 1280px) {
+	
+}
+@media (max-width:1199px) {
+	
+}
+@media (max-width:991px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 140px;
+        margin-left: -70px;
+        }
+	
+}
+@media (max-width: 800px) {
+	
+}
+@media (max-width:767px) {
+	
+}
+
+@media (max-width: 480px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 110px;
+        margin-left: -55px;
+        }
+    
+           
+}
+@media (max-width: 360px) {
+            
+            .
+}
+
+
+/***************************** for responsive ends *********************/

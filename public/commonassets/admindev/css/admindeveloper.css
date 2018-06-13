@@ -1,0 +1,9 @@
+.errorcustclass{
+    
+    color: #FF94A8;
+}
+
+.anctxtwhitecolor ,  .anctxtwhitecolor:focus, .anctxtwhitecolor:hover {
+    color: #fff !important;
+    transition: all 0.5s ease 0s;
+}

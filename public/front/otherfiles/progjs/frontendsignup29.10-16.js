@@ -1,0 +1,239 @@
+function callforregister(posturl,tokendata)
+{
+    
+    //console.log("=base_url_data=>"+base_url_data);    
+     
+     //// custome validation sample
+     //jQuery.validator.addMethod("soumik", function(value, element)
+     //{
+     //
+     //     //alert("value==>"+value+"==element==>"+$(element).val());
+     //     return false;
+     //}, "soumik testing");
+
+     
+     //******************* CUSTOM VALIDATION FOR Password for atleast one uppercase, one lowercase, one digit and one special character in SIGNUP Form
+     $.validator.addMethod("checkpwdformat", function(value, element) 
+     {
+          var characterReg = /^(?=.{8,15})(?=[a-zA-Z0-9^\w\s]*)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).*$/;
+          return characterReg.test(value);
+     },"Password should contain atleast one uppercase, one lowercase, one digit and one special character");
+     
+     //******************** CUSTOMe Email Validation
+     
+     $.validator.addMethod("checkemailformat", function(value, element) 
+     {
+     var emailpattern = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i;
+     return emailpattern.test(value);
+     },"Email should valid");     
+     
+     $("#signupfrmid").validate({
+       
+			rules: {
+				
+				nickname: {
+					required: true,
+					minlength: 2,
+                    
+				},
+				password: {
+					required: true,
+					minlength: 8,
+                    maxlength: 15,
+                    checkpwdformat: true,
+				},
+				password_confirmation: {
+					required: true,
+					equalTo: "#password"
+				},
+				email: {
+					required: true,
+					email: true,
+                    checkemailformat: true
+				},
+				termscond: {
+					required: true,
+                    
+					
+				},
+				
+			},
+			messages: {
+							
+				nickname: {
+					required: "Please enter a nick name",
+					minlength: "Name must consist of at least 2 characters"
+				},
+				password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 8 characters long",
+                    maxlength: "Your password can be maximum 15 characters long"
+				},
+				password_confirmation: {
+					required: "Please provide the password",
+					equalTo: "Please enter the same password as above"
+				},
+				email: "Please enter a valid email address",
+				termscond: "Please accept our terms and conditions",
+				
+			}
+            
+            
+            
+		});
+     
+     
+    
+       var chksignupvalidation=  $("#signupfrmid").valid();
+       
+       toastr.remove();// Immediately remove current toasts without using animation
+       
+       if (chksignupvalidation)
+       {
+                     var dob=jQuery("#dob").val();
+                    var nickname=jQuery("#nickname").val();
+                    var email=jQuery("#email").val();
+                    var password=jQuery("#password").val();
+                    var password_confirmation=jQuery("#password_confirmation").val();
+                    var gender=jQuery("#gender").val();
+                    
+                    
+                    
+                     var checkterms=jQuery("#termscond").prop('checked');
+                    
+                    if (checkterms)
+                    {
+        
+                         $("#signuploader").removeClass("mydisplaynone");
+                         
+//                         jQuery('html, body').animate({
+//									scrollTop: jQuery("#signuploader").offset().top + 5 }, 'slow');
+                         
+                         
+                     //**** ajax code starts
+    
+                        var postdata = {_token:tokendata,dob:dob,nickname:nickname,email:email,password:password,password_confirmation:password_confirmation,gender:gender,regtype:'normal'}; 
+                        
+                        postdataforregistration(postdata,posturl); // newly added 26/10/2016
+                       
+                        /*
+                        
+                        var urldata=base_url_data+"/"+posturl;
+                        jQuery.ajax({
+                            
+                            data:postdata,
+                            dataType:'JSON',
+                            url:urldata,
+                            type:'POST',
+                            success:function(d){
+                                
+                               toastr.remove();// Immediately remove current toasts without using animation
+                               
+                               if (d.flag_id==0)
+                               {
+                               
+                                                    var error_message=d.error_message;
+                                                   
+                                                    var error_message_data='';
+                                                    
+                                                    if (error_message!=null)
+                                                    {
+                                                                for (ermsgkey in error_message)
+                                                             {
+                                                                  error_message_data+="<p>"+ error_message[ermsgkey]+"</p>";
+                                                             }
+                                                    }
+                                      $("#signuploader").addClass("mydisplaynone");              
+                                      poptriggerfunc(msgtype='error',titledata='',msgdata=error_message_data,sd=1000,hd=1500,tmo=null,etmo=null,poscls='toast-top-full-width');         
+                                
+                              
+                               }
+                               else
+                               {
+                                   poptriggerfunc(msgtype='success',titledata='',msgdata="Registration done successfully, Please check the mail",sd=3000,hd=2000,tmo=1000,etmo=1000,poscls='toast-top-full-width');
+                                   $("#signupfrmid").trigger("reset");
+                                   $("#signuploader").addClass("mydisplaynone");
+                                   $('#myModal').modal('hide');
+                                   
+                                   
+                              }
+                    
+                               
+                                
+                               
+                            }
+                            
+                            
+                            });
+                        
+                        */
+            
+                    //**** ajax code ends
+                    }
+                    else
+                    {
+                      var error_message_data=" You haven't agreed to terms and conditions! ";
+                        poptriggerfunc(msgtype='error',titledata='',msgdata=error_message_data,sd=1000,hd=1500,tmo=null,etmo=null,poscls='toast-top-full-width');
+                    }
+       }
+      
+     
+     
+     
+    
+    
+    
+}
+
+
+function postdataforregistration(postdata,posturl)
+{
+//    var postdata = {_token:tokendata,dob:dob,nickname:nickname,email:email,password:password,password_confirmation:password_confirmation,gender:gender,regtype:'normal'}; 
+                        var urldata=base_url_data+"/"+posturl;
+                        jQuery.ajax({
+                            
+                            data:postdata,
+                            dataType:'JSON',
+                            url:urldata,
+                            type:'POST',
+                            success:function(d){
+                                
+                               toastr.remove();// Immediately remove current toasts without using animation
+                               
+                               if (d.flag_id==0)
+                               {
+                               
+                                                    var error_message=d.error_message;
+                                                   
+                                                    var error_message_data='';
+                                                    
+                                                    if (error_message!=null)
+                                                    {
+                                                                for (ermsgkey in error_message)
+                                                             {
+                                                                  error_message_data+="<p>"+ error_message[ermsgkey]+"</p>";
+                                                             }
+                                                    }
+                                      $("#signuploader").addClass("mydisplaynone");              
+                                      poptriggerfunc(msgtype='error',titledata='',msgdata=error_message_data,sd=1000,hd=1500,tmo=null,etmo=null,poscls='toast-top-full-width');         
+                                
+                              
+                               }
+                               else
+                               {
+                                   poptriggerfunc(msgtype='success',titledata='',msgdata="Registration done successfully, Please check the mail",sd=3000,hd=2000,tmo=1000,etmo=1000,poscls='toast-top-full-width');
+                                   $("#signupfrmid").trigger("reset");
+                                   $("#signuploader").addClass("mydisplaynone");
+                                   $('#myModal').modal('hide');
+                                   
+                                   
+                              }
+                    
+                               
+                                
+                               
+                            }
+                            
+                            
+                            });
+}

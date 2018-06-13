@@ -1,0 +1,124 @@
+<?php
+$successmsg='';$errormsg='';
+if(!empty($successmsgdata))
+{
+        $successmsg=$successmsgdata;
+}
+
+if(!empty($errormsgdata))
+{
+        $errormsg=$errormsgdata;
+}
+
+?>
+@extends('layouts.admin.adminmaster',['successmsg' => $successmsg,'errormsg'=>$errormsg])
+@section('content')
+	<?php
+	$country_name='';$country_2_code='';$country_3_code='';$lat='';$lng='';$id=0; $c_icon = '';$c_code = '';
+	if(!empty($countryrow))
+	{
+		$country_name=stripslashes($countryrow->country_name);
+		$country_2_code=stripslashes($countryrow->country_2_code);
+		$country_3_code=stripslashes($countryrow->country_3_code);
+		$lat=stripslashes($countryrow->lat);
+		$lng=stripslashes($countryrow->lng);
+		$c_icon = stripslashes($countryrow->currency_icon);
+		$c_code = stripslashes($countryrow->currency_code);
+		 $id=$countryrow->id; 
+	}
+	?>
+			<div class="padding-md">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="panel panel-default">
+							
+								
+								<?php echo Form::open(array('url' => ADMINSEPARATOR.'/countrysave', 'method' => 'post','id'=>'countryaddfrmid','class'=>"form-horizontal form-border no-margin" )); ?>
+								<div class="panel-heading">
+								 Save Country
+								</div>
+								<div class="panel-body">
+								
+								
+									<div class="form-group">
+										<label class="control-label col-lg-4">*Country Name</label>
+										<div class="col-lg-6">
+											
+											<?php    
+    echo Form::text("country_name", $value=$country_name, $attributes = array( "id"=>"country_name","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('country_name') }}</span>
+
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-4">*Country 2 Letter Code </label>
+										<div class="col-lg-6">
+											<?php    
+    echo Form::text("country_2_code", $value=$country_2_code, $attributes = array( "id"=>"country_2_code","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('country_2_code') }}</span>									
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-4">*Country 3 Letter Code</label>
+										<div class="col-lg-6">
+											<?php    
+    echo Form::text("country_3_code", $value=$country_3_code, $attributes = array( "id"=>"country_3_code","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('country_3_code') }}</span>										
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-4">*Latitude</label>
+										<div class="col-lg-6">
+											<?php    
+    echo Form::text("lat", $value=$lat, $attributes = array( "id"=>"lat","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('lat') }}</span>											
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									
+									<div class="form-group">
+										<label class="control-label col-lg-4">*Longitude</label>
+										<div class="col-lg-6">
+											<?php    
+    echo Form::text("lng", $value=$lng, $attributes = array( "id"=>"lng","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('lng') }} </span>									
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+
+										<label class="control-label col-lg-4">*Currency Code</label>
+										<div class="col-lg-6">
+											<?php    
+    echo Form::text("c_code", $value=$c_code, $attributes = array( "id"=>"c_code","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('c_code') }} </span>									
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									
+									<div class="form-group">
+										<label class="control-label col-lg-4">*Currency Icon</label>
+										<div class="col-lg-6">
+											<?php    
+    echo Form::text("c_icon", $value=$c_icon, $attributes = array( "id"=>"c_icon","class"=>" form-control input-sm parsley-validated ")); ?>
+	<span  class="errorcustclass">{{ $errors->first('c_icon') }} </span>									
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									
+								</div>
+								<div class="panel-footer ">
+								
+									<button class="btn btn-success" type="submit">Submit</button>
+									<a class="btn btn-warning" href="<?php echo  url(ADMINSEPARATOR.'/country'); ?>"><i class="fa fa-chevron-left"></i> Back</a>
+								</div>
+									<input type="hidden" name="countryid" value="<?php echo $id; ?>" >
+							<?php
+							
+							echo Form::close();
+							
+							?>
+						</div><!-- /panel -->
+					</div>
+					</div>
+			</div><!-- /.padding-md -->
+
+			
+    
+@endsection

@@ -1,0 +1,47 @@
+/*css*/
+
+.inline.artist_list.request_type + .request_type {
+margin-top: 10px;
+}
+
+.datepickerWrap {
+display: inline-block;
+vertical-align: middle;
+position: relative;
+}
+
+
+/*for date picker in honme page starts */
+.bootstrap-datetimepicker-widget {
+color: #333;
+background: #fff; padding: 6px;   
+}
+.bootstrap-datetimepicker-widget table {
+width: 100%;
+}
+/*for date picker in honme page ends */
+
+
+/*CSS Media Queries*/
+@media (max-width: 1199px) {	
+	
+}
+@media (max-width: 991px) {
+	
+}
+
+@media (max-width: 767px) {
+	
+}
+@media (max-width: 600px) {
+	
+}
+
+@media (max-width: 500px) {
+	
+	
+}
+@media (max-width: 400px) {
+	
+}
+/* End */

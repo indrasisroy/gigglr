@@ -1,0 +1,38 @@
+
+function rosterleftlistitemmodal(gig_request_id){
+    var callingurl=base_url_data+"/loadgigrostermodal";
+    var callurlwithdata={_token:csrf_token_data,gig_request_id:gig_request_id};
+    
+    var cmsgdata="...";         
+      
+    if (logID!='') {
+     $.ajax({
+       
+       url:callingurl,
+       type:'POST',
+       dataType:'json',
+       data:callurlwithdata,
+       success:function(d){
+            
+  
+                           var ep_contents=d.ep_contents;
+                           $("#gigrosterDiv").html(ep_contents);
+                           
+                           setTimeout(function(){
+
+                           }, 500);
+                           
+                           
+                           $('#myRosterGigModal').modal('show');
+  
+                           footerarea_css();
+                            
+  
+        
+       }
+       
+      });
+    }else{
+      poptriggerfunc(msgtype='error',titledata='',msgdata="Please Login to continue",sd=6000,hd=1500,tmo=3000,etmo=4000,poscls='toast-bottom-right');          
+    }
+  }

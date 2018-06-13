@@ -1,0 +1,51 @@
+<?php
+
+
+namespace App\Http\Controllers\frontend;
+
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+
+//use App\User
+use Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use DB;
+use Illuminate\Routing\Route;
+use Cookie;
+use Response;
+use View;
+use Mail;
+
+class FrontendtestemailController extends Controller
+{
+      function checkchronmail(Request $request)
+        {
+            
+            //*** send mail starts
+            
+            $body = "Hello mail is getting fired from from cron-".time(); //email body
+            
+            $passarr['adminfrom']="soumik@esolzmail.com";
+            $passarr['emailsub']="prosessional cron mail test ".rand();
+            $passarr['emailto']="indrasis.roy@esolzmail.com";
+            $passarr['sitename']="prosessional"; $replacefrom=array(); $replaceto=array();
+            $data = array(
+            'replacefrom'=>$replacefrom,'replaceto'=>$replaceto,'email_body'=>$body
+            );
+            $chkmail= Mail::send('emails.emailviewfolder.commonemailtenplate', $data, function ($message) use ($passarr)
+            {
+            
+                $message->from($passarr['adminfrom'], $passarr['sitename']);            
+                $message->to($passarr['emailto'])->subject($passarr['emailsub']);
+            
+            }
+                                
+            );
+                 
+            //*** send mail ends
+            
+        }
+}

@@ -1,0 +1,411 @@
+<footer class="footer">
+
+
+<?php
+
+						$fetchtype='single'; $tablename="settings";
+						$fieldnames=" facebook_url,twitter_url,google_url,instagram_url,youtube_url,footer_logo_image,site_name,copyright_year";
+						$wherear=array();
+						$wherear['id']=1;
+						$orderbyfield="id"; $orderbytype="asc";
+						$limitstart=0;$limitend=0;                
+						
+						$fetchfooterurldata=getdatafromtable($fetchtype,$tablename,$fieldnames,$wherear,$orderbyfield='',$orderbytype,$limitstart,$limitend);
+						
+
+
+?>
+
+
+		<div class="container">
+			<div class="row">
+				<div class="copyWrap dpShow">
+				<?php
+                
+						$footerfburl=''; $footertwiturl=''; $footergoogleurl=''; $footerinstaurl=''; $footeryoutubeurl=''; $site_name=''; $copyright_year='';
+						$imgurldata = "{{ URL::asset('front')}}/images/footer-logo.png";
+						if(!empty($fetchfooterurldata))
+						{
+							 $footerfburl=$fetchfooterurldata->facebook_url;
+							 $footertwiturl=$fetchfooterurldata->twitter_url;
+							 $footergoogleurl=$fetchfooterurldata->google_url;
+							 $footerinstaurl=$fetchfooterurldata->instagram_url;
+							 $footeryoutubeurl=$fetchfooterurldata->youtube_url;
+							 $site_name=$fetchfooterurldata->site_name;
+							 $copyright_year=$fetchfooterurldata->copyright_year;
+							 $imgurldata = asset('upload/settings-image/source-file/'.$fetchfooterurldata->footer_logo_image);
+						}
+				
+				?>
+					<!--<a href="index.html"><img src="{{ URL::asset('front')}}/images/footer-logo.png" alt="" /></a>-->
+					<a href="index.html"><img src="{{$imgurldata}}" alt="" /></a>
+					<div class="copy">Copyright &copy; {{$copyright_year}} {{$site_name}}</div>
+				</div>
+				<div class="footerLinkWrap">
+					<h4>JUMP TO</h4>
+						
+					<ul class="footerLink">
+					
+						<?php
+								$value=Session::get('front_id_sess');
+								if(!empty($value))
+								{
+						?>
+					
+                        <li><a href="#" class="disable">My Account</a></li>
+	                    <li><a href="#" class="disable">My Profile</a></li>
+                        <li><a href="#" class="disable">My Roster</a></li>
+								
+						<?php
+								}
+						?>
+								
+                        <li><a href="#">Search</a></li>
+                         <li><a href="#">Gig Guide</a></li>
+                         <li><a href="#">Support</a></li>
+								<li><a href="<?php echo url('help');?>">Help</a></li>
+                     </ul>
+				</div>
+				<div class="footerLinkWrap">
+					<h4>VIEW</h4>
+					<ul class="footerLink">
+						
+						<li><a href="#">Terms and Conditions</a></li>
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Security & Safety</a></li>
+					</ul>
+				</div>
+						
+				
+						
+				<div class="footerSocialWrap">
+					<h4 class="headingExtra-margin">CONNECT</h4>
+					<ul class="footerSocial">
+                        <li><a href="<?php echo $footerfburl;?>" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
+                        <li><a href="<?php echo $footertwiturl;?>" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></li>
+                        <li><a href="<?php echo $footerinstaurl;?>" target="_blank"><i class="fa fa-instagram"></i>Instagram</a></li>
+                        <li><a href="<?php echo $footergoogleurl;?>" target="_blank"><i class="fa g-plus"></i>Google+</a></li>
+                        <li><a href="<?php echo $footeryoutubeurl;?>" target="_blank"><i class="fa fa-play"></i>YouTube</a></li>
+                    </ul>
+				</div>
+						
+                <div class="subscribe">
+					<h4>subscribe</h4>
+						<?php echo Form::open(array('url'=>'subscribe','files'=>true,'method'=>'post','id'=>'subscribeform','class'=>'')); ?>
+						<div class="subscribeInput"><?php echo Form::text("subscriberemail", $value='', $attributes = array("id"=>"subscribe_email", "class"=>"form-control", "placeholder"=>"your email address")); ?></div>
+						<div class="subscribeBtn"><button type="button" id="subscribebut" class="btn btn-primary">subscribe</button></div>
+						<!--loader for subscription starts-->
+						<div id="subscribeloader" class="row margintop5 mydisplaynone">
+							<div class="col-sm-4">&nbsp;</div>
+							<div class="col-sm-4">
+							
+								<div class="row mytextcenter">
+								   <img width="35" src="{{ URL::asset('front')}}/otherfiles/progimages/transperant-loader.gif" alt="Loading...">
+								</div>
+								<div class="row mytextcenter">Please wait...</div>
+							
+							</div>
+							<div class="col-sm-4">&nbsp;</div>
+						</div>
+						<!--loader for subscription ends--> 
+						<?php echo Form::close(); ?>
+				</div>
+				
+				<div class="copyWrap mobShow">
+					<a href="index.html"><img src="{{$imgurldata}}" alt="" /></a>
+				   <div class="copy">Copyright &copy; {{$copyright_year}} {{$site_name}}</div>
+				</div>
+			</div>
+		</div><!-- /.container -->
+	</footer>
+						<!--	post a gig  start -->
+      <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" >
+  <div class="modal-dialog popup-dialog" role="document">
+    <div class="modal-content popup-content artist_popup">
+      <div class="modal-body popup-body">
+          <div class="artist_hedr gig">
+            <button type="button" class="close popup-close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h2>post a gig</h2>
+          </div>
+          <div class="artist_form_outr clearfix">
+          <form>
+              <div class="alert error" style="display: none;">Your booking failed</div>
+              <div class="alert success" style="display: none;">Your booking successfully</div>
+              <div class="Constitution-inner-first artist_list">
+						<span>Public Event:</span>
+						<div class="radio_in">
+						    <input id="radio3" type="radio" name="radio" value="1" checked="checked"><label for="radio3"><span><span></span></span>Yes</label>
+						  </div>
+						  <div class="radio_in">
+						    <input id="radio4" type="radio" name="radio" value="1" checked="checked"><label for="radio4"><span><span></span></span>No</label>
+						  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="artist_divsn reqst_dvsn">
+                        <div class="inline artist_list request_type lacTxt">
+                          <span>Location:</span>
+                        </div>
+                        <div class="reqField"><a href="javascript:void(0);" id="clickme1" class="tBtn form-control">Required Field.</a></div>
+                    </div>
+                  </div>
+                  <div class="new-location clearfix clickmeShow" style="display:none;" id="opnaddresssection">
+                      <div class="col-md-12">
+                        <div class="artist_divsn reqst_dvsn">
+                          <div class="inline artist_list request_type">
+                               <!--<input type="text" class="form-control form-control-B" placeholder="Address1"/>-->
+							   <?php echo Form::text("address1", $value="", $attributes = array( "id"=>"address1","placeholder"=>"Address1","class"=>"form-control form-control-B" )); ?>
+                              <!--<input type="text" class="form-control form-control-B" placeholder="Address2"/>-->
+							  <?php echo Form::text("address2", $value="", $attributes = array( "id"=>"address2","placeholder"=>"Address2","class"=>"form-control form-control-B" )); ?>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+						   <?php								
+						   $control_attrAr=array();
+						   $control_attrAr['id']='country';
+						   $control_attrAr['class']=" selectpicker ";
+						   $control_attrAr['title']="Select Country";
+						   
+						   $fetchcountryArData=array();
+						   $fetchcountryArData[]="Select country";
+						   if(!empty($country)){
+						   foreach($country as $countryAll){
+							   $fetchcountryArData[$countryAll->id]=$countryAll->country_name;
+						   }
+						   }
+						   //if($userdetails->country!=''){
+						   //$country = $userdetails->country;
+						   //}else{
+						   $country='';	
+						   //}						
+						   echo Form::select('country', $fetchcountryArData, $country,$control_attrAr);							
+						   ?>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+                                <!--<select class="selectpicker artist_txt">
+                                    <option value="0"> State</option>
+                                    <option value="1">Arkansas</option>
+                                    <option value="2">California</option>
+                                    <option value="3">Delaware</option>
+                                </select>-->
+								 <?php
+								
+								 $control_attrAr=array();
+								 $control_attrAr['id']='select_state';
+								 $control_attrAr['class']=" selectpicker ";
+								 $control_attrAr['title']="Select state";
+								 
+								 //if($userdetails->state!=''){
+								 //$select_state=$userdetails->state;
+								 //}else{
+								 $select_state='';
+								 //}
+								 $fetchstateData=array();
+								 //if(!empty($state)){
+								 //	 foreach($state as $stateAll){
+								 //		 $fetchstateData[$stateAll->id]=$stateAll->state_name;
+								 //	 }
+								 //}
+								 
+								 echo Form::select('select_state', $fetchstateData, $select_state,$control_attrAr);							
+							 ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+                                <!--<input type="text" class="form-control" placeholder="City" />-->
+								<?php echo Form::text("city", $value="", $attributes = array( "id"=>"city","placeholder"=>"City","class"=>"form-control form-control-B")); ?>
+								
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+                                <!--<input type="text" class="form-control" placeholder="Zip" />-->
+								<?php echo Form::text("zip", $value="", $attributes = array( "id"=>"zip","placeholder"=>"ZIP","class"=>"form-control form-control-B")); ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a class="closeLoc" href="javascript:void(0);"></a>
+                    
+                </div>
+
+                  <div class="col-md-12">
+                     <div class="Constitution-inner-first artist_list gig_list">
+						<div class="radio_in">
+						    <input id="radio5" type="radio" name="radio5" value="1" checked="checked"><label for="radio5"><span><span></span></span><span class="gig_txt">Group:</span></label>
+						  </div>
+						  <div class="radio_in">
+						    <input id="radio6" type="radio" name="radio5" value="1" checked="checked"><label for="radio6"><span><span></span></span><span class="gig_txt">Individual:</span></label>
+						  </div>
+						</div>
+                  </div>
+                  <div class="col-md-6">
+                <div class="artist_divsn">
+                  <div class="inline artist_list request_list">
+<!--                      <span>Category for Request </span>-->
+                        <select class="selectpicker artist_txt">
+                            <option value="0">Category for this gig</option>
+                            <option value="1">DJ</option>
+                            <option value="2">DANCER</option>
+<!--
+                            <option value="2">depends on fee2</option>
+                            <option value="3">depends on fee3</option>
+-->
+                        </select>
+                    </div>
+                </div>
+                  </div>
+                  <div class="col-md-6">
+                <div class="artist_divsn">
+                  <div class="inline artist_list request_list">
+<!--                      <span> Genre for Request </span>-->
+                        <select class="selectpicker artist_txt">
+                            <option value="0"> Genre for this gig</option>
+                            <option value="1">Funk</option>
+                            <option value="2">Jazz</option>
+                            <option value="3">Belly Dancer</option>
+                        </select>
+                    </div>
+                </div>
+                  </div>
+                  <div class="col-md-6">
+<!--                <div class="artist_divsn">-->
+                  <div class="inline artist_list">
+                      <span>Date of Event:</span>
+                      <div class="form-group inpt input-customm">
+                          <div class='input-group date'>
+                             <input type='text' class="form-control date_outr datetimepicker" placeholder="03.05.16"/>
+                               <span class="input-group-addon dt">
+                               <span class="glyphicon glyphicon-calendar clndr"></span>
+                              </span>
+                          </div>
+                       </div>
+
+                    </div>
+<!--                </div>  -->
+                    <div class="inline artist_list">
+                          <span>Start Time:</span>
+                     <div class="form-group inpt input-customm">
+                          <div class='input-group date' id='datetimepicker3'>
+                             <input type='text' class="form-control clck_outr timepicker" placeholder="3.15 pm"/>
+                               <span class="input-group-addon clck">
+                               <span class="glyphicon glyphicon-time"></span>
+                              </span>
+                          </div>
+                       </div>
+                     </div>
+                      <div class="inline artist_list">
+                          <span>End Time:</span>
+                     <div class="form-group inpt input-customm">
+                          <div class='input-group date' id='datetimepicker4'>
+                             <input type='text' class="form-control clck_outr timepicker" placeholder="4.20 pm"/>
+                               <span class="input-group-addon clck">
+                               <span class="glyphicon glyphicon-time"></span>
+                              </span>
+                          </div>
+                       </div>
+                        </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                     <div class="inline artist_list">
+                          <span>Security Deposit:</span>
+                     <div class="form-group inpt input-customm">
+                          <div class='input-group date'>
+                             <input type='text' class="form-control clck_outr lck_outr" placeholder="$0.00" />
+                               <span class="input-group-addon clck">
+                               <span class="glyphicon lck"><img src="images/lock2.png" alt=""/></span>
+                              </span>
+                          </div>
+                       </div>
+                     </div>
+                      <div class="inline artist_list ">
+                          <span>Total Payment:</span>
+                     <div class="form-group inpt input-customm">
+                          <div class='input-group date'>
+                             <input type='text' class="form-control clck_outr lck_outr" placeholder="$0.00" />
+                               <span class="input-group-addon clck">
+                               <span class="glyphicon lck"><img src="images/lock.png" alt=""/></span>
+                              </span>
+                          </div>
+                       </div>
+                     </div>
+                       <div class="inline artist_list">
+                      <span>This Post Expires:</span>
+                      <div class="form-group inpt input-customm">
+                          <div class='input-group date'>
+                             <input type='text' class="form-control date_outr datetimepicker gig_inr" placeholder="10.05.16"/>
+                               <span class="input-group-addon dt">
+                               <span class="glyphicon glyphicon-calendar clndr"></span>
+                              </span>
+                          </div>
+                       </div>
+                    </div>
+                      <div class="inline artist_list">
+                          <span>Time:</span>
+                     <div class="form-group inpt input-customm">
+                          <div class='input-group date' id='datetimepicker4'>
+                             <input type='text' class="form-control clck_outr timepicker gig_inr" placeholder="4.20 pm"/>
+                               <span class="input-group-addon clck">
+                               <span class="glyphicon glyphicon-time"></span>
+                              </span>
+                          </div>
+                       </div>
+                        </div>
+                     </div>
+                    <div class="col-md-offset-6 col-md-6">
+                        
+                      </div>
+                  <div class="col-md-12">
+<!--                      <span>Tech Specs</span>-->
+                       <textarea class="form-group inpt nb form-control" placeholder="please assit artist(s) by describing any venue specifics such as:parking areas,access times or areas,set up times, back stage areas,stage size,on-site contact person details, lift access or any other technical requirements or concerns in this area here."></textarea> 
+                        
+<!--                       <p> 5 lines, 50 characters maximum per line</p>-->
+                      </div>
+                  <div class="col-md-12">
+                    <div class="customBtn-group">
+                      <button class="btn btn-warning artist_btn reqst_btn">cancel</button>
+                       <button class="btn btn-warning artist_btn rqst_trm_btn">agree to terms </button>
+                     </div>
+                  </div>
+                  </div>
+          </form>
+            </div>
+      </div>
+    </div>
+  </div>
+      </div>
+<!--	post a gig  end -->
+						
+<!-- for subscribe js starts -->
+	<script type="text/javascript" src="{{ URL::asset('front')}}/otherfiles/progjs/frontendsubscribe.js"></script>
+<!-- for subscribe js ends -->						
+<script>
+    jQuery(document).ready(function(){
+				
+        $('#subscribebut').click(function(){
+		
+		    callforsubscription("subscribe",csrf_token_data);
+		
+		});
+        $('#clickme1').click(function(){
+        	$( ".new-location" ).toggle();
+			$(this).parent().toggleClass('clickBorder');
+			$('.new-location').find('.form-control:eq(0)').focus();
+		});		
+    });
+</script>

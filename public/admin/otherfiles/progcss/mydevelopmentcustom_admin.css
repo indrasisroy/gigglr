@@ -1,0 +1,113 @@
+.marginbottom5{
+    
+    margin-bottom:5px; 
+    
+}
+.marginbottom10{
+    
+    margin-bottom:10px; 
+    
+}
+/*.input-group-btn.arunmoy .btn{
+    margin-right: 10px;
+}*/
+.marginbottom20{
+    
+    margin-bottom:20px; 
+    
+}
+.marginbottom30{
+    
+    margin-bottom:30px; 
+    
+}
+
+.margintop5{
+    
+    margin-top:5px; 
+    
+}
+.margintop10{
+    
+    margin-top:10px; 
+    
+}
+.margintop20{
+    
+    margin-top:20px; 
+    
+}
+.margintop30{
+    
+    margin-top:30px; 
+    
+}
+
+.mydisplaynone{
+    display: none;
+}
+
+.mydisplayblock{
+    display: block;
+}
+.mytextcenter{
+    text-align:center;
+}
+
+.myerrorcolor{
+    color: #ff141e;
+}
+
+.myitalicclass{
+    font-style: italic;
+}
+
+
+.txtaligncustcls{
+ text-align: center;
+}
+
+
+
+
+/****************************** for responsive starts ********************/
+
+@media (max-width: 1300px) {
+	
+}
+
+@media (max-width: 1280px) {
+	
+}
+@media (max-width:1199px) {
+	
+}
+@media (max-width:991px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 140px;
+        margin-left: -70px;
+        }
+	
+}
+@media (max-width: 800px) {
+	
+}
+@media (max-width:767px) {
+	
+}
+
+@media (max-width: 480px) {
+    
+        .progressbarouter .userprofimgprogress {
+        width: 110px;
+        margin-left: -55px;
+        }
+    
+}
+@media (max-width: 360px) {
+            
+            .
+}
+
+/***************************** for responsive ends *********************/

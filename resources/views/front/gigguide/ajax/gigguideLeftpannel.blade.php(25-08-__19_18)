@@ -1,0 +1,72 @@
+				<div class="event_left_row scrollforrosterleftclass">
+
+				<ul class="event_list">
+				<br>
+				
+				<?php
+				//echo "<pre>";print_r($result);die;
+				
+				if(!empty($result)){
+						$dateLast = '';
+						$iconImage = '';
+						$textMsg = '';
+						$eventtxtData = '';
+						foreach($result as $guide){
+						
+						if($guide['return_type'] =='genre_only'){
+							$iconImage = 'user.png';
+							$textMsg = 'has an genre';
+							
+							$eventtxtData = $guide['artist_name']." has an event at ".$guide['event_city']." on ".date('d/m/Y',strtotime($guide['event_start_date_time']));
+						}else if($guide['return_type'] =='city_only'){
+							$iconImage = 'home.png';
+							$textMsg = 'has an event';
+							$eventtxtData = $guide['artist_name']." has an event at ".$guide['event_city']." on ".date('d/m/Y',strtotime($guide['event_start_date_time']));
+						}else{
+							$iconImage = 'heart_icon2.png';
+							$textMsg = 'has an favorite';
+							
+							$type_flag = '';
+							if($guide['type_flag'] == '1'){
+							$type_flag = 'artist';
+							}else if($guide['type_flag'] == '2'){
+							$type_flag = 'group';
+							}
+							
+							
+							$eventtxtData = "Your favorite ".$type_flag." '".$guide['artist_name']."' has an event at ".$guide['event_city']." on ".date('d/m/Y',strtotime($guide['event_start_date_time']));
+						}
+						
+						
+						?>
+						<h2>
+							<?php
+							
+							if($dateLast != date('F Y',strtotime($guide['event_start_date_time']))){
+								$dateLast = date('F Y',strtotime($guide['event_start_date_time']));
+								echo $dateLast;
+							}
+							
+							
+							?>
+						</h2>
+						<li>
+						<img class="rosterlefticonclass" src="{{ FRONTCSSPATH}}/images/<?php echo $iconImage;?>">
+						<a class="clickGigView" href="javascript:void(0)" data-type_flag='<?php echo $guide['type_flag'];?>' data-gig='<?php echo $guide['giguniqueid'];?>'>
+						<?php
+						echo $eventtxtData;
+						?>
+						</a>
+						</li>
+						<?php
+						}
+					}
+					else{
+					echo "<span class='nodatacustlftclass'>Record not found</span>";
+					}
+				?>
+				</ul>
+				</div>
+   <div class="modal fade" id="myModalGuide" tabindex="-1" role="dialog">
+      <div class="Guidemodal"></div>		
+   </div>

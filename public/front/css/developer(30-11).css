@@ -1,0 +1,803 @@
+/*css*/
+
+.inline.artist_list.request_type + .request_type {
+margin-top: 10px;
+}
+
+.datepickerWrap {
+display: inline-block;
+vertical-align: middle;
+position: relative;
+}
+
+
+    /*for date picker in honme page starts */
+    .bootstrap-datetimepicker-widget {
+    color: #333;
+    background: #fff; padding: 6px;   
+    min-width: 220px;
+    }
+    .bootstrap-datetimepicker-widget table {
+    width: 100%;
+    }
+
+
+    .hmsrchbookdate {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    cursor: pointer;
+    padding: 0;
+    }
+    .datepickerWrap {margin-left: 15px;}
+    .datepickerWrap .calendarOpen {
+    margin-left: 0 !important;
+    /*position: relative;
+    z-index: 9; */
+    }
+	
+/*for date picker in honme page ends */
+
+/* for review start */
+ .person {
+    max-height: 153px;
+/*    width: 110px;*/
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+/*    padding: 5px;*/
+}
+.person img {
+    box-shadow: 0 0 1px 8px #f8f8f8;
+    -webkit-box-shadow: 0 0 1px 8px #f8f8f8;
+    width: 100%;
+}
+.ratingSec .star_cell {width: 98px;}
+.ratingSec .rank_cell {padding-right: 98px;}
+.ratingSec .star_cell {padding-left: 7px;}
+#reviewPopup .prifile_heading {
+    font-size: 26px;
+    line-height: 1;
+    margin-top: 24px;
+    text-align: center;
+    display: inherit;
+}
+#reviewPopup .rating-sm {
+    font-size: 1.1em;
+    margin-top: 12px;
+}
+#reviewPopup .rank_cell {
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+#reviewPopup .rating-container .star {margin: 0 1px;}
+#reviewPopup .star_cell {
+    line-height: normal;
+}
+#reviewPopup .caption {display: none;}
+#reviewPopup  .glyphicon-star-empty:before {
+    /*content: "\e006";*/
+   content: url(../images/star_icon-blank.png);
+}
+#reviewPopup  .filled-stars .glyphicon-star:before {
+   content: url(../images/star_icon.png);
+}
+#reviewPopup  .rating-container .empty-stars {
+    color: #aeafb1;
+}
+#reviewPopup  .rating-container .filled-stars {
+    color: #272725;
+    transition: all 0s ease-in-out;
+    -moz-transition: all 0s ease-in-out;
+    -webkit-transition: all 0s ease-in-out;
+    -ms-transition: all 0s ease-in-out;
+    -o-transition: all 0s ease-in-out;
+}
+.leavRvwTime {
+    background: #f8f8f8;
+    padding: 6px 10px;
+    margin-bottom: 20px;
+}
+.leavRvwTime .review_date li {
+    font-size: 15px;
+    padding-right: 10px;
+    margin-right: 7px;
+}
+.leavRvwTime .form_right {font-size: 15px;}
+
+/**/
+.profileImgSec, .ratingSec {
+    float: left;
+    padding-left: 15px;padding-right: 15px;
+    width: 100%;
+}
+
+.btn.btn-warning.rqst_trm_btn.btn-pink {background: #ff6364;border-color:#ff6364;}
+.btn.btn-warning.rqst_trm_btn.btn-pink:hover{
+    border-color: #e64d4e;
+    background: #e64d4e;
+}
+#reviewPopup textarea.form-control {
+    min-height: 200px;
+    line-height: 1.5;
+}
+
+
+        .hkj{
+            background-image: url(images/calender.png);
+            
+        }
+        .personC{
+            border: 10px solid #f8f8f8;
+            max-height: 168px;
+        }
+        .visitor_colsC{
+            margin-top: 15px;
+        }
+        .visitor_colsC .like_box a{
+            border: 1px solid #faa2ae;
+        }
+        .visitor_colsC .like_box a.add_link{
+            border: 4px solid #fef3cc;
+        }
+        .visitor_colsC .like_box{
+            margin-bottom: 20px;
+        }
+        .star_cellC{
+            text-align: center;
+        }
+/*
+        .star_cellC span{
+            padding: 14px 0 10px;   
+        }
+*/
+        .btn_row .btn.btn-warning.artist_btn{
+            font-size: 16px !important;
+            padding: 6px 10px;
+        }
+        #eventPopup .prifile_heading{
+            margin: 10px 0;
+            text-align: left;
+            display: inherit;
+            font-size: 35px;
+            line-height: 1;
+        }
+        .event-location{
+            background: #eeeeee;
+            border: 1px solid #cdcdcd;
+            border-radius: 3px;
+            padding: 10px 15px;
+            height: 150px;
+        }
+        .event-location h4{
+            margin-top: 0;
+            color: #000;
+            font-weight: bold;
+        }
+        .eventAddress {
+            padding: 0 10px;
+            max-width: 160px;
+            font-size: 14px;
+            color: #000;
+            font-weight: bold;
+            
+       }
+        .mapSec iframe{
+            height: 150px;
+            border: none;
+            width: 100%;
+        }
+
+.rating span {
+    line-height: normal;
+}
+.btnHlfWrap {
+    padding: 0 15px;
+    float: left;
+    width: 50%;
+}
+#reviewPopup .customBtn-group.clearfix {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+#reviewPopup .btnHlfWrap .btn {
+    width: 100% !important;
+}
+
+
+
+/******************CSS FOR export modal starts here on 03-11-16*************************************************/
+
+.modal-open .ui-datepicker {
+    z-index: 1999 !important;
+    background-color: #fff;
+}
+
+.export-date-text{
+   width: 145px !important;
+}
+
+.export-data-button{
+   float:left;
+/*   margin-left:10px;*/
+   background-color: #ff6363;
+   color: white;
+   font-weight: bold;
+}
+
+.export-button-width{
+   width: 150px;
+}
+
+.rosterdatepicker
+{
+   border: 1px solid #ccc;
+    display: block;
+    left: 441.5px;
+    padding: 10px;
+    position: fixed;
+    top: 187px;
+    width: 200px;
+    z-index: 4;
+}
+
+.ui-datepicker-prev.ui-corner-all {
+    display: inline-block;
+    width: 80%;
+ 
+}
+
+.ui-datepicker-calendar{
+  width:100%;
+}
+
+.userNameNw{
+ text-align: center;    
+}
+
+.exportevents{
+   font-size: 12px;
+   font-family: 'AvenirLTStd95Black';
+   text-transform: uppercase;
+   border-radius: 0;
+   padding: 9px 17px;
+}
+/******************CSS FOR export modal ends here on 03-11-16*************************************************/
+
+
+
+/******************CSS FOR WALLET starts here*************************************************/
+
+
+
+
+
+/*additional css*/
+.tHistory {
+    
+}
+.tHistoryList {
+    
+}
+.tHistoryList + .tHistoryList {margin-top: 15px;}
+.tHistoryList:nth-child(even) {
+/*    background: #f7f7f7;*/
+}
+.transactionId {
+    text-align: right;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+/*achintya*/
+.payTable{
+    display: table;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.payTableR{
+    display: table-row;
+}
+.payTableC{
+    display: table-cell;
+    width: 25%;
+    padding:5px;
+}
+.payTableC:nth-child(2){
+    min-width: 140px;
+}
+.payTableC:nth-child(3), .payTableC:nth-child(4){
+/*    text-align: right;*/
+}
+.payTableR:last-child .payTableC {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid #ccc;
+    font-weight: 700;
+}
+.payTable thead tr th, .payTable tbody tr td {
+    border: 0;
+}
+.payTable tfoot tr th {
+    border-top: 1px solid #ccc;
+    font-weight: 700;
+}
+.payTableR:last-child{
+    background: transparent;
+}
+.textUpper{
+    text-transform: uppercase;
+}
+.payTableList > h3{
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    background: #d9e5eb;
+    padding: 10px 10px 6px 10px;
+    color: #404040;
+    margin-bottom: 0
+}
+.payTableList > h3 sup{
+    top: -0.2em;
+}
+.payTableR, .payTable tbody tr:nth-child(2n){
+    background: #f1f1f1;
+}
+.payTableR:nth-child(2n){
+    background: #fff;
+}
+.payTableR:first-child .payTableC, .payTable thead{
+    font-size: 11px;
+    background-color: #2bb6a3;
+    color: #fff;
+/*    text-align: center;*/
+}
+.payTableList:first-child h3{
+    margin-top: 0;
+}
+.payTableC{
+    font-size: 14px;
+}
+.payTableCol{
+/*    height: 329px;*/
+/*    overflow:auto;*/
+    font-family: 'Lato', sans-serif;
+}
+.payTable tbody {
+/*    height: 244px;*/
+    height: 264px;
+    overflow: auto;
+}
+/*.payTable thead > tr, .payTable tfoot > tr, .payTable tbody{display:block;width: 100%;}*/
+.historyTable .payTable thead > tr, .historyTable .payTable tfoot > tr, .historyTable .payTable tbody{display:block;width: 100%;}
+/*.payTable {min-height: 160px;}*/
+.payTable.historyTable {min-height: 0;}
+
+
+.payTableCol .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+    background-color: #2bb6a3;
+}
+.payTableCol .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar, .payTableCol .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar, .payTableCol .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+    background-color: rgba(43,182,163,0.5);
+}
+.mCSB_scrollTools .mCSB_draggerRail{
+    background-color: #f1f1f1;
+}
+.payTableC {
+    font-size: 12px;
+/*    vertical-align: middle;*/
+}
+.lett-spac{
+    letter-spacing: 1px;
+}
+.full-info{
+    margin-top: 10px;
+}
+.full-info span {
+    display: inline-block;
+    font-size: 11px;
+    line-height: 1;
+    margin-top: 0;
+    min-width: 26%;
+    vertical-align: bottom;
+    font-family: 'Lato', sans-serif;
+}
+.fnt18.pay_hed, .fnt18 {
+    font-size: 18px;
+}
+.inlineNew {
+    display: inline-block;
+    vertical-align: top;
+}
+.inlineNew + .inlineNew {
+    margin-left: 16px;
+    max-width: 54%;
+    line-height: 1.4;
+}
+.inlineNew span {
+    font-family: 'AvenirLTStd95Black';
+    display: block;
+}
+.inlineNew .fund_btn {
+    width: 100%;
+}
+.netFund {
+    margin-bottom: 6px;
+/*    margin-top: -6px;*/
+/*    text-align: right;*/
+    font-size: 12px;
+    font-family: 'Conv_AvenirLTStd-Medium';
+    padding-right: 16px;
+    
+    padding: 10px 10px 7px;
+    border: 1px solid #ccc;
+    border-top: 0;
+}
+.netFund span {font-family: 'AvenirLTStd95Black';}
+.btmGap + p {margin-bottom: 0;}
+.payTable .lett-spac span {
+    display: block;
+}
+.payTable tbody tr td, .payTable thead tr th, .payTable tfoot tr th {
+    padding: 5px;
+    width: 16%;
+}
+.payTable tbody tr td:nth-child(2) {
+    width: 30%;
+}
+.payTable thead tr th:nth-child(1) {min-width: 96px;}
+.payTable thead tr th:nth-child(2) {min-width: 114px;}
+
+.payTable tfoot tr th {
+/*    width: 29%;*/
+}
+.fixClass {
+    height: 0;
+    overflow: hidden;
+}
+.clearfix.netFund span {float: right;min-width: 80px;}
+.payTable tbody tr:last-child td {
+    font-weight: 700;
+    border-top: 1px solid #ccc;
+    background: #e4eef3;
+}
+.card_payments_content p {
+/*    font-family: 'Lato', sans-serif;*/
+}
+.fntBold {font-family: 'Conv_AvenirLTStd-Medium';}
+
+
+
+.star_cell span img {
+    max-height: 11px;
+    margin-top: -1px;
+}
+.errorField input, .errorField .dropdown-toggle.btn-default {
+    border-color: #da5353 !important;
+    background: rgba(255,0,0,0.1) !important;
+    box-shadow: 0px 0px 5px 1px rgba(255,0,0,0.5) !important;
+}
+
+.lightYlw .dropdown-toggle.btn-default{
+    background: #fafad5 !important;
+}
+.fadeYlw {
+    background-color: #fdf2e6 !important;
+}
+.fadeRed {
+    background: #ffd9d9 !important;
+}
+.lightGreen {
+    background-color: #defad4 !important;
+}
+
+.amount .add_fund:before, .add_fund.amount:before {
+    content: attr(data-currency);
+/*    content: "$";*/
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+.labelSpcl {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    padding: 5px 10px;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    text-align: right;
+    width: 108px;
+}
+.labelSpclWrap {
+    padding-left: 116px;
+}
+.labelSpclWrap .outPut, .labelSpclWrap .outInput {
+    text-align: left;
+}
+.labelSpclWrap a {
+    padding-left: 0;
+}
+.labelSpclWrap a:hover {
+    background: transparent;
+}
+.labelSpclWrap .editInput {
+    margin-left: 111px;
+    width: auto;
+    text-align: left;
+    right: 0;
+}
+
+@media (min-width: 992px) {
+    .btmGap {
+/*        margin-bottom: 38px;*/
+/*        margin-bottom: 90px;*/
+/*        margin-top: 58px;*/
+    }
+    .priceGap {
+/*        margin-top: 68px;*/
+    }
+    .payTableC, .payTable tbody tr td, .payTable thead tr th, .payTable tfoot tr th  {padding-left: 10px;padding-right: 10px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+/*************************************CSS for wallet ends here********************************/
+
+@media(min-width:768px) {
+    .profileImgSec {
+        width: 50%;
+    }
+    .ratingSec {
+        width: 50%;
+    }
+}
+@media(max-width: 991px) {
+    #reviewPopup .star_cell {
+        width: 110px;
+        padding-top: 0;
+        text-align: center;
+    }
+}
+@media(max-width: 767px) {
+    #reviewPopup .prifile_heading {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .leavRvwTime {margin-top: 12px;}
+}
+/* for review end */
+
+/* for not wrpping when saved starts*/
+.link_edit .outPut {white-space: nowrap;}
+/* for not wrpping when saved ends*/
+span.dollar {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    color: #555;
+    z-index: 9;
+}
+span.dollar + .form-control {
+    padding-left: 20px;
+}
+.cal_setting_txtcls {
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    padding-top: 2px;
+}
+
+.yellowstardev {
+    background: rgba(0, 0, 0, 0) url(../../images/yellow_star.png) no-repeat scroll 0 6px;
+    width: 15px;
+}
+.toast-success, .toast-error {
+    opacity: 1 !important;
+}
+
+.fc-row .fc-content-skeleton {
+    padding-top: 24px !important;
+    padding-bottom: 0 !important;
+}
+.zoomicondev {
+    width: 100%;
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+    -ms-box-sizing: border-box !important;
+    -o-box-sizing: border-box !important;
+    margin-top: 24px;
+}
+.commoncustrowclass {
+    padding-top: 5px;
+}
+.calendarChange .commoncustrowclass {
+    top: inherit;
+}
+
+
+.event_btn_group .remove_icon{
+
+border: none;
+line-height: inherit;
+width: 25px;
+height: 20px;
+background: url(../images/minus-new1.png) no-repeat 5px center;
+position: absolute;
+    right: 9px;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.right_daterng_cust_wdth {
+    display: inline;
+/*
+     float: left;
+    width: 0 !important;
+*/
+    
+}
+.right_daterng_cust_wdth{
+    margin-right: 220px;
+}
+
+.commoncustrowclass > div {
+    display: inline-block;
+    vertical-align: middle;
+    background-position: center center;
+    margin: 0 2px;
+}
+.newTimeWrap {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.timeField, .ampm {
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
+  text-transform: uppercase;
+}
+.timeField {
+  width: 35%;
+}
+.ampm {
+  width: 30%;
+}
+.newTimeWrap .artist_txt .form-control.inpt, .newTimeWrap .artist_txt .btn.dropdown-toggle.btn-default {
+  margin-top: 0;
+}
+.newTimeWrap .artist_txt .filter-option.pull-left {
+  text-transform: uppercase;
+}
+.timeField .form-control:focus, .ampm .bootstrap-select .dropdown-toggle:focus {
+border-color: #66afe9;
+outline: 0;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.ampm .artist_txt .text, .timeField .form-control {text-transform: uppercase;}
+
+/*CSS Media Queries*/
+@media (min-width: 1199px) {	
+    .right_daterng_cust_wdth{
+        margin-right: 210px;
+    }
+}
+@media (max-width: 1199px) {
+  .right_daterng_cust_wdth{
+        margin-right: 10px;
+    } 
+}
+@media(min-width: 992px) {
+   .fc-row .fc-content-skeleton {
+/*       padding-bottom: 24px !important;*/
+   }
+   .fc-ltr .fc-basic-view .fc-day-number {
+       padding-top: 20px;
+   }
+}
+
+@media (max-width: 991px) {
+	.datepickerWrap .calendarOpen {width: 20px;}
+}
+
+@media(max-width:767px){
+    #eventPopup .prifile_heading{
+        font-size: 22px;
+        text-align: center;
+    }
+    .visitor_colsC{
+        margin-top: 10px;
+    }
+    .visitor_colsC .like_box{
+        margin-bottom: 14px;
+    }
+    .leavRvwTime{
+        margin: 10px 0;
+    }
+    .event-location{
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+     #eventPopup .profileImgSec, .ratingSec{
+        width: 50%;
+    }
+    .personC{
+        max-height: 124px;
+    }
+    .eventAddress{
+        max-width: 100%;
+    }
+    #eventPopup .artist_hedr{
+        padding: 10px 0;
+    }
+    .person {
+        max-width: 140px;
+    }
+}
+@media (max-width: 600px) {
+    #eventPopup .profileImgSec, .ratingSec{
+        width: 100%;
+    }
+    #eventPopup .prifile_heading{
+        font-size: 18px;
+    }
+    .visitor_colsC{
+        margin-top: 0;
+    }
+    #eventPopup .popup-body h2{
+        font-size: 20px;
+    }
+    #eventPopup .visitor_cols, .visitor_cols2{
+        margin-bottom: 10px;
+    }
+    .right_daterng_cust_wdth .export-data-button{
+        float: inherit;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    span.dollar {
+        bottom: 18px;
+    }
+}
+@media (max-width: 500px) {
+	
+	
+}
+@media (max-width: 400px) {
+	
+}
+
+/* End */

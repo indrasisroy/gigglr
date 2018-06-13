@@ -1,0 +1,853 @@
+	<!--	post a gig  start -->
+
+  <!--<div class="modal fade" id="myModal6" tabindex="-1" role="dialog">-->
+  
+  
+  <?php
+  $front_sess= session('front_id_sess');
+  $event_address1 = "";
+  $event_address2 = "";
+  $city_gig = "";
+  $zip_gig = "";
+  $bid_type = 0;
+  
+  $event_type = "";
+  $type_flag = "";
+  $giguniqueid = "";
+  $booker_id_1 = "";
+  
+  $booking_cancellation_fee_gig = "";
+  $artist_security_deposit_gig = "";
+  $total_amount_gig = "";
+  
+  $event_date = "";
+  $event_start_time = "";
+  $event_end_date = "";
+  $event_end_time = "";
+  
+  $request_expire_date = "";
+  $request_expire_time = "";
+  $gig_description_gig = "";
+  $gigmaster_id = "";
+  $gigpostrequestflag = "";
+  $gigmasterbooking_status = '';
+  
+    //******************added in 25-08-16 for gig master table change start **************//
+    $gig_m_bcf_lock_id = "";
+    $gig_m_asd_lock_id = "";
+    $gig_m_ta_lock_id = "";
+    //******************added in 25-08-16 for gig master table change end **************//
+  
+  if(!empty($gig_master_details)){
+  //print_r($gig_master_details);die;
+  
+    //******************added in 25-08-16 for gig master table change start **************//
+    $gig_m_bcf_lock_id = $gig_master_details->bcf_lock_id;
+    $gig_m_asd_lock_id = $gig_master_details->asd_lock_id;
+    $gig_m_ta_lock_id = $gig_master_details->ta_lock_id;
+    //******************added in 25-08-16 for gig master table change end **************//
+    
+  $gigmaster_id = $gig_master_details->id;
+  $giguniqueid = $gig_master_details->giguniqueid;
+  $booker_id_1 = $gig_master_details->booker_id; 
+  $event_address1 = $gig_master_details->event_address1;
+  $event_address2 = $gig_master_details->event_address2;
+  $city_gig = $gig_master_details->event_city;
+  $zip_gig = $gig_master_details->event_zip;
+  
+  $event_type = $gig_master_details->event_type;
+  $type_flag = $gig_master_details->type_flag;
+  $gigpostrequestflag = $gig_master_details->gigpostrequestflag;
+  $gigmasterbooking_status = $gig_master_details->booking_status;
+  if($event_type =="1"){
+  $event_type_for = "Public";
+  }else if($event_type =="2"){
+  $event_type_for = "Private";
+  }else{
+  $event_type_for = "Public and Private";
+  }
+  
+  if($type_flag =="1"){
+  $type_flag_for = "Artist";
+  }else if($type_flag =="2"){
+  $type_flag_for = "Group";
+  }else{
+  $type_flag_for = "Vanue";
+  }
+  $artist_id = $gig_master_details->artist_id;
+  
+  $booking_cancellation_fee_gig = $gig_master_details->booking_cancellation_fee;
+  $artist_security_deposit_gig = $gig_master_details->artist_security_deposit;
+  $total_amount_gig = $gig_master_details->total_amount;
+  
+  $event_date = $gig_master_details->event_date;
+  $event_start_time = $gig_master_details->event_start_time;
+  $event_end_date = $gig_master_details->event_end_date;
+  $event_end_time = $gig_master_details->event_end_time;
+  
+  $request_expire_date = $gig_master_details->request_expire_date;
+  $request_expire_time = $gig_master_details->request_expire_time;
+  $gig_description_gig = $gig_master_details->gig_description;
+  
+  //$event_end_time = $gig_master_details->event_end_time;
+  }
+      $booking_cancellation_fee = "";
+	  $bcf_lock_id = "";
+	  $artist_security_deposit = "";
+	  $asd_lock_id = "";
+	  $total_amount = "";
+	  $ta_lock_id = "";
+	  $gig_description = "";
+	  $gig_bidrequest_details_id = "";
+      $gig_bid_status = "";
+      $booker_id_bid = "";
+      $last_updated_by = "";
+      $last_updated_by_bid = "";
+      $bid_request_artist_id = "";
+  if(!empty($gig_bidrequest_details)){
+  //print_r($gig_bidrequest_details);die;
+      $last_updated_by_bid = $gig_bidrequest_details->last_updated_by;
+      $bid_request_artist_id = $gig_bidrequest_details->artist_id;
+	  $gig_bidrequest_details_id = $gig_bidrequest_details->id;
+      $booker_id_bid = $gig_bidrequest_details->booker_id;
+      $booking_cancellation_fee = $gig_bidrequest_details->booking_cancellation_fee;
+	  $bcf_lock_id = $gig_bidrequest_details->bcf_lock_id;
+	  $artist_security_deposit = $gig_bidrequest_details->artist_security_deposit;
+	  $asd_lock_id = $gig_bidrequest_details->asd_lock_id;
+	  $total_amount = $gig_bidrequest_details->total_amount;
+	  $ta_lock_id = $gig_bidrequest_details->ta_lock_id;
+	  $gig_description = $gig_bidrequest_details->gig_description;
+      $gig_bid_status = $gig_bidrequest_details->gig_bid_status;
+  }
+  $country_name = '';$state_name = '';
+  $cat_name = ''; $gener = '';
+  
+	if($get_gig_country_details!=''){
+	$country_name =$get_gig_country_details;
+  }
+	if($get_gig_state_details!=''){
+	$state_name =$get_gig_state_details;
+  }
+    if($get_gig_Cat_details!=''){
+	$cat_name =$get_gig_Cat_details;
+  }
+    if($get_gig_Gen_details!=''){
+	$gener =$get_gig_Gen_details;
+  }
+  $booking_request_class = "";
+  $booking_request_text = "";
+  if($gigpostrequestflag == 1){
+    $booking_request_class = "";
+    if($front_sess == $booker_id_1){
+        $booking_request_text = "your posted gig";
+    }else{
+    $booking_request_text = "your matched skill gig";
+    }
+    
+    
+  }else if($gigpostrequestflag == 2){
+    $booking_request_class = "booking_request";
+    $booking_request_text = "booking request";
+  }
+  
+  ?>
+  <div class="modal-dialog popup-dialog" role="document">
+    <div class="modal-content popup-content artist_popup">
+      <div class="modal-body popup-body">
+          <div class="artist_hedr gig {{$booking_request_class}}">
+            <button type="button" class="close popup-close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h2>{{$booking_request_text}}</h2>
+          </div>
+          <div class="artist_form_outr clearfix">
+          <!--<form>-->
+				<?php
+                  echo Form::open(array('url' => '',
+                  'method' => 'get',
+                  'id'=>'gig_master_post',
+                  'class'=>"",
+				  'autocomplete'=>'off'
+                  ));
+                ?>
+              <div class="alert error" style="display: none;">Your booking failed</div>
+              <div class="alert success" style="display: none;">Your booking successfully</div>
+              <div class="Constitution-inner-first artist_list">
+						<span>Public Event:</span>
+						<lable>{{$event_type_for}}</lable>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="artist_divsn reqst_dvsn">
+                        <div class="inline artist_list request_type lacTxt">
+                          <span>Location:</span>
+                        </div>
+                        <!--<div class="reqField"><a href="javascript:void(0);" id="clickme1" class="tBtn form-control">Required Field.</a></div>-->
+                    </div>
+                  </div>
+                  <div class="new-location clearfix clickmeShow" id="opnaddresssection_gig">
+                      <div class="col-md-12">
+                        <div class="artist_divsn reqst_dvsn">
+                          <div class="inline artist_list request_type">
+                              <?php echo Form::text("address1_gig", $value=$event_address1, $attributes = array( "readonly","id"=>"address1_gig","class"=>"form-control form-control-B" )); ?>
+                              <?php
+							  if($event_address2!=''){
+							  echo Form::text("event_address2", $value=$event_address2, $attributes = array( "readonly","id"=>"address2_gig","placeholder"=>"Address2","class"=>"form-control form-control-B" ));
+							  }
+							  ?>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+						   <?php								
+						   echo Form::text("state_name", $value=$state_name, $attributes = array( "readonly","id"=>"state_name","class"=>"form-control form-control-B" )); 
+						   ?>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+ 
+								 <?php
+								echo Form::text("country_name", $value=$country_name, $attributes = array( "readonly","id"=>"country_name","class"=>"form-control form-control-B" )); 
+								//$control_attrAr=array();
+								//$control_attrAr['id']='select_state_gigp';
+								//$control_attrAr['class']=" selectpicker ";
+								//$control_attrAr['title']="Select state";
+								
+								//$select_state='';
+								//$fetchstateData=array();
+								//echo Form::select('select_state_gigp', $fetchstateData, $select_state,$control_attrAr);
+							 ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+                                <!--<input type="text" class="form-control" placeholder="City" />-->
+								<?php echo Form::text("city_gig", $value=$city_gig, $attributes = array( "readonly","id"=>"city_gig","placeholder"=>"City","class"=>"form-control form-control-B")); ?>
+								
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-md-6">
+                        <div class="artist_divsn">
+                          <div class="inline artist_list request_list">
+								<?php echo Form::text("zip_gig", $value=$zip_gig, $attributes = array( "readonly","id"=>"zip_gig","placeholder"=>"ZIP","class"=>"form-control form-control-B")); ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--<a class="closeLoc" href="javascript:void(0);"></a>-->
+                    
+                </div>
+
+                  <div class="col-md-12">
+                     <div class="Constitution-inner-first artist_list gig_list">
+					 <span>This GIG for {{$type_flag_for}}</span>
+					 </div>
+                  </div>
+                  <div class="col-md-6">
+                <div class="artist_divsn">
+                  <div class="inline artist_list request_list">
+                        <!--<select class="selectpicker artist_txt" id="skillcategory">
+                        </select>-->
+						<?php						
+						  echo Form::text("cat_name", $value=$cat_name, $attributes = array( "readonly","id"=>"cat_name","class"=>"form-control form-control-B" )); 								
+						?>
+
+                    </div>
+                </div>
+                  </div>
+                  <div class="col-md-6">
+                <div class="artist_divsn">
+                  <div class="inline artist_list request_list">
+
+						<?php						
+						  echo Form::text("gener", $value=$gener, $attributes = array( "readonly","id"=>"gener","class"=>"form-control form-control-B" )); 						
+						?>
+                    </div>
+                </div>
+                  </div>
+                  <div class="col-md-6">
+					  <div class="inline artist_list">
+						<span>Date of Event:</span>
+						  <div class="form-group inpt input-customm">
+                           <div class='input-group date'>
+                              <?php    
+								echo Form::text("event_date", $value=date('d M Y', strtotime($event_date)), $attributes = array( "readonly","id"=>"event_date","class"=>"form-control clck_outr" )); 
+                                 ?>
+                              <span class="input-group-addon dt">
+                              <span class="glyphicon glyphicon-calendar clndr"></span>
+                              </span>
+                           </div>
+                        </div>
+					  </div>
+
+					 <div class="inline artist_list">
+                        <span>Start Time:</span>
+                        <div class="form-group inpt input-customm">
+                           <div class='input-group date' id='datetimepicker3'>
+                              <!--<input type='text' class="form-control clck_outr timepicker" placeholder="3.15 pm"/>-->
+                              <?php
+							  echo Form::text("event_start_time", $value=date('h.i A', strtotime($event_start_time)), $attributes = array( "readonly","id"=>"event_start_time","class"=>"form-control clck_outr" ));
+
+                                 ?>
+                              <span class="input-group-addon clck">
+                              <span class="glyphicon glyphicon-time"></span>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="inline artist_list">
+                        <span>End Time:</span>
+                        <div class="form-group inpt input-customm input-customm-2">
+                           <div class='input-group date' id='datetimepicker4'>
+                              <!--<input type='text' class="form-control clck_outr timepicker" placeholder="4.20 pm"/>-->
+                              <?php
+							  echo Form::text("event_end_time", $value=date('h.i A', strtotime($event_end_time)), $attributes = array( "readonly","id"=>"event_end_time","class"=>"form-control clck_outr" ));
+                                 ?>
+                              <span class="input-group-addon clck">
+                              <span class="glyphicon glyphicon-time"></span>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="inline artist_list">
+                      <span>This Post Expires Date:</span>
+
+                        <div class="form-group inpt input-customm input-customm-color">
+                           <div class='input-group date'>
+                              <?php
+							  echo Form::text("request_expire_date", $value=date('d M Y', strtotime($request_expire_date)), $attributes = array( "readonly","id"=>"request_expire_date","class"=>"form-control clck_outr" )); 
+
+                                 ?>
+                              <span class="input-group-addon dt">
+                              <span class="glyphicon glyphicon-calendar clndr"></span>
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+
+                     <div class="inline artist_list">
+                        <span>Security Deposit:</span>
+                        <div class="form-group inpt input-customm">
+                           <div class='input-group date'>
+                           <span class="dollar">$</span>
+                              <?php
+							  if($gig_bidrequest_details_id!=""){
+							  
+                                 echo Form::text("security_payment_gig",
+                                 $value=$artist_security_deposit,
+                                 $attributes = array( "id"=>"security_payment_gig",
+                                 "class"=>"form-control clck_outr lck_outr securityimg",
+                                 "placeholder"=>"0.00",
+                                 "maxlength"=>"16",
+								 
+                                 ));
+							  }else{
+                                 echo Form::text("security_payment_gig",
+                                 $value=$artist_security_deposit_gig,
+                                 $attributes = array( "id"=>"security_payment_gig",
+                                 "class"=>"form-control clck_outr lck_outr securityimg",
+                                 "placeholder"=>"0.00",
+                                 "maxlength"=>"16",
+								 
+                                 ));
+							  }
+
+                                 ?>
+                              <!--<a class="securityimg">-->
+								<span class="input-group-addon clck securityclck clickable">
+								<span class="glyphicon lck" data-id="">
+								<div id="securityimg_div">
+								  <!--<img src="{{ URL::asset('public/front')}}/images/lock2.png" alt=""/>-->
+								</div>
+								</span>
+								</span>
+							 <!-- </a>-->
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="inline artist_list">
+                        <span>Total Payment:</span>
+                        <div class="form-group inpt input-customm">
+                           <div class='input-group date'>
+                           <span class="dollar">$</span>
+                              <?php
+							   if($gig_bidrequest_details_id!=""){
+                                 echo Form::text("total_payment_gig",
+                                 $value=$total_amount,
+                                 $attributes = array( "id"=>"total_payment_gig",
+                                 "class"=>"form-control clck_outr lck_outr totalpayimg",
+                                 "placeholder"=>"0.00",
+                                 "maxlength"=>"16"
+                                 ));
+								 }else{
+								 echo Form::text("total_payment_gig",
+                                 $value=$total_amount_gig,
+                                 $attributes = array( "id"=>"total_payment_gig",
+                                 "class"=>"form-control clck_outr lck_outr totalpayimg",
+                                 "placeholder"=>"0.00",
+                                 "maxlength"=>"16"
+                                 ));
+								 }
+                                 ?>
+                              <span class="input-group-addon clck totalclck clickable">
+                              <span class="glyphicon lck">
+							  <div id="totalpayimg_div" data-totalpayimgflag=''>
+								
+							  </div>
+							  
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+					  <?php
+					  
+					  if($artist_id!='0'){
+					  ?>
+                       <div class="inline artist_list">
+						<span>Booking Cancellation Fee:</span> 
+						  <div class="form-group inpt input-customm">
+							 <div class='input-group date'>
+                            <span class="dollar">$</span>
+								<?php
+								if($gig_bidrequest_details_id!=""){
+								   echo Form::text("total_payment_gig",
+								   $value=$booking_cancellation_fee,
+								   $attributes = array( "id"=>"cancellation_fee",
+								   "class"=>"form-control clck_outr lck_outr bookingcanimg",
+								   "placeholder"=>"0.00",
+								   "maxlength"=>"16"
+								   ));
+								   }else{
+								   echo Form::text("total_payment_gig",
+								   $value=$booking_cancellation_fee_gig,
+								   $attributes = array( "id"=>"cancellation_fee",
+								   "class"=>"form-control clck_outr lck_outr bookingcanimg",
+								   "placeholder"=>"0.00",
+								   "maxlength"=>"16"
+								   ));
+								   }
+								   ?>
+								<span class="input-group-addon clck bookingcanclck clickable">
+								<span class="glyphicon lck">
+								<div id="bookingcanimg_div" data-bookingcanimgflag="">
+								  
+								</div>
+								
+								</span>
+							 </div>
+						  </div>
+					  </div>
+					  <?php
+					  }
+					  ?>
+
+                      <div class="inline artist_list">
+                        <span>This Post Expires Time:</span>
+
+                        <div class="form-group inpt input-customm input-customm-color">
+                           <div class='input-group date' id='datetimepicker5'>
+                              <?php
+							  echo Form::text("request_expire_time", $value=date('h.i A', strtotime($request_expire_time)), $attributes = array( "readonly","id"=>"request_expire_time","class"=>"form-control clck_outr timepicker" )); 
+							  ?>
+                              <span class="input-group-addon clck">
+                              <span class="glyphicon glyphicon-time"></span>
+                              </span>
+                           </div>
+                        </div>
+                        </div>
+                     </div>
+                    <div class="col-md-offset-6 col-md-6">
+                        
+                      </div>
+						<?php
+						
+						//if($artist_id=='0'){
+						//$bid_type = 1;
+						?>
+						<div class="col-md-12">
+							<?php
+							if($gig_bidrequest_details_id==""){
+							echo Form::textarea("gig_description", $value=$gig_description_gig, [ "id"=>"gig_description", "placeholder"=>"Gig Description","class"=>"form-group inpt nb form-control" ]);
+							}else{
+							echo Form::textarea("gig_description", $value=$gig_description, [ "id"=>"gig_description", "placeholder"=>"Gig Description","class"=>"form-group inpt nb form-control" ]);
+							}
+							?>
+						</div>
+						<?php
+						//}
+						?>
+                        <?php
+                        
+                        if($divshow !="gigmaster"){
+                        
+                        ?>
+                        
+                  <div class="col-md-12">
+                    <div class="customBtn-group">
+                      
+					  
+                    <?php
+                        if($gig_bid_status==1){
+                        ?>
+                        <button class="btn btn-warning artist_btn_can reqst_btn_dvlr_cancel" type="button" id="cancel_bid_reqst">cancel</button>
+                        <?php
+                            if($last_updated_by_bid != $front_sess){
+                        ?>
+                        <button class="btn btn-warning artist_btn reqst_btn_dvlr_negotiated" type="button" id="negotiated_bid_reqst">negotiate</button>
+                        <?php    
+                            }
+                            if($booker_id_1 == $front_sess){
+                            ?>
+                                <button class="btn btn-warning artist_btn_acpt reqst_btn_dvlr_accept" type="button" id="accept_bid_reqst_booker">accept</button>
+                                <?php
+                            }else{
+                        ?>
+                        <button class="btn btn-warning artist_btn_acpt reqst_btn_dvlr_accept" type="button" id="accept_bid_reqst">accept </button>
+                        <?php
+                        }
+                        }else if($gig_bid_status==2){
+                            if($front_sess == $booker_id_bid ){
+                            //************* 14-Oct-10 start************//
+                            if($gigmasterbooking_status != 1){
+                        ?>
+                        <button class="btn btn-warning artist_btn_can reqst_btn_dvlr_cancel" type="button" id="cancel_bid_reqst">cancel</button>
+                        <button class="btn btn-warning artist_btn_acpt reqst_btn_dvlr_accept" type="button" id="accept_bid_reqst_booker">accept </button>
+                            <?php
+                            }else{
+                            ?>
+                            <!--<button class="btn btn-warning artist_btn_can reqst_btn_dvlr_cancel" type="button" id="">cancel gig</button>-->
+                            <?php
+                            }
+                            //************* 14-Oct-10 end************//
+                            }else{
+                            //************* 14-Oct-10 start************//
+                            ?><!--<button class=" btn btn-warning artist_btn_can reqst_btn_dvlr_cancel" type="button" id="">cancel gig</button>-->
+                            <?php
+                            //************* 14-Oct-10 end************//
+                            }
+                        }else{
+                        ?>
+                        <button class="btn btn-warning artist_btn_can reqst_btn_dvlr_cancel" type="button" id="cancel_bid_reqst">cancel</button>
+                        <button class="btn btn-warning artist_btn reqst_btn_dvlr_negotiated" type="button" id="negotiated_bid_reqst">negotiate</button>
+                            <?php
+                            if($booker_id_1 == $front_sess){
+                                ?>
+                                <button class="btn btn-warning artist_btn_acpt reqst_btn_dvlr_accept" type="button" id="accept_bid_reqst_booker">accept</button>
+                                <?php
+                            }else{
+                                ?>
+                                <button class="btn btn-warning artist_btn_acpt reqst_btn_dvlr_accept" type="button" id="accept_bid_reqst">accept</button>
+                                <?php
+                                }
+                        }
+                    ?>
+                      
+                     </div>
+                  </div>
+
+                        <?php
+                        
+                        }
+                        ?>
+
+                  
+                  </div>
+				  <!--</form>-->
+		          <?php
+                  echo Form::close();
+                  ?>
+            </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->
+<!--post a gig end -->
+	<script type="text/javascript" src="{{ URL::asset('public/front')}}/otherfiles/progjs/frontendGigRosterAjax.js"></script>
+        <script type="text/javascript" src="{{ URL::asset('public/front')}}/otherfiles/progjs/frontendroster.js"></script>
+	     <script type="text/javascript" src="{{ URL::asset('public/front')}}/otherfiles/progjs/jquery.maskMoney.js"></script>
+	  <script type="text/javascript">
+	  var lockImg = "<img src='{{ URL::asset('public/front')}}/images/lock2.png' alt=''>";
+	  var unlockImg = "<img src='{{ URL::asset('public/front')}}/images/lock.png' alt=''>";
+	  var gig_type = "<?php echo $bid_type;?>";
+	  var gigmaster_id = "<?php echo $gigmaster_id;?>";
+      var gig_bid_status = "<?php echo $gig_bid_status;?>";
+      var gigpostrequestflagjs = "<?php echo $gigpostrequestflag;?>";
+      
+	  var ta_lock_id_p = "<?php echo $ta_lock_id;?>";
+      var bcf_lock_id_p = "<?php echo $bcf_lock_id;?>";
+      var asd_lock_id_p = "<?php echo $asd_lock_id;?>";
+      
+	  var gig_bidrequest_id = "<?php echo $gig_bidrequest_details_id;?>";
+
+	  var gigunique_id = "<?php echo $giguniqueid;?>";
+	  var booker_id = "<?php echo $booker_id_1;?>";
+	  var artist_id = "<?php echo $artist_id;?>";
+	  var type_flag = "<?php echo $type_flag;?>";
+      var bid_request_artist_id = "<?php echo $bid_request_artist_id;?>";
+      var last_updated_by_bid = "<?php echo $last_updated_by_bid;?>";
+      var negotiation_id = "<?php echo $negotiation_id;?>";
+	  
+    //******************added in 25-08-16 for gig master table change start **************//
+    var gig_m_bcf_lock_id = "<?php echo $gig_m_bcf_lock_id;?>";
+    var gig_m_asd_lock_id = "<?php echo $gig_m_asd_lock_id;?>";
+    var gig_m_ta_lock_id = "<?php echo $gig_m_ta_lock_id;?>";
+
+    if (gig_m_ta_lock_id == '' || gig_m_ta_lock_id == '0') {
+        $("#totalpayimg_div").html(unlockImg);
+        $('#totalpayimg_div').data('totalpayimgflag',0);
+        $('#totalpayimg_div').data('totalpay_lock_by',0);
+    }else{
+        $("#totalpayimg_div").html(lockImg);
+        $('#totalpayimg_div').data('totalpayimgflag',1);
+        $('#totalpayimg_div').data('totalpay_lock_by',gig_m_ta_lock_id);
+        $('#total_payment_gig').attr('disabled', 'disabled');
+        $('.totalclck').removeClass("clickable");
+        
+        ta_lock_id_p = gig_m_ta_lock_id;
+        
+    }
+    
+    if (gig_m_asd_lock_id == '' || gig_m_asd_lock_id == '0') {
+        $("#securityimg_div").html(unlockImg);
+        $('#securityimg_div').data('securityimgflag',0);
+        $('#securityimg_div').data('security_lock_by',0);
+    }else{
+        $("#securityimg_div").html(lockImg);
+        $('#securityimg_div').data('securityimgflag',1);
+        $('#securityimg_div').data('security_lock_by',gig_m_asd_lock_id);
+        $('#security_payment_gig').attr('disabled', 'disabled');
+        $('.securityclck').removeClass("clickable");
+        
+        asd_lock_id_p = gig_m_asd_lock_id;
+    }
+    
+    
+    if (gig_m_bcf_lock_id=='' || gig_m_bcf_lock_id =='0') {
+        $("#bookingcanimg_div").html(unlockImg); 
+        $("#bookingcanimg_div").data('bookingcanimgflag',0);
+        $('#bookingcanimg_div').data('booking_lock_by',0);
+    }else{
+        $("#bookingcanimg_div").html(lockImg); 
+        $('#bookingcanimg_div').data('bookingcanimgflag',1);
+        $('#bookingcanimg_div').data('booking_lock_by',gig_m_bcf_lock_id);
+        $('#cancellation_fee').attr('disabled', 'disabled');
+        $('.bookingcanclck').removeClass("clickable");
+        
+        bcf_lock_id_p = gig_m_bcf_lock_id;
+        
+    }
+
+
+    //******************added in 25-08-16 for gig master table change end **************//
+
+    var negotiate_flg = 0;
+   	//$('#total_payment_gig').maskMoney({prefix:'$'}); //******masking for total payment
+   	//$('#cancellation_fee').maskMoney({prefix:'$'});//******masking for cancellation payment
+   	//$('#security_payment_gig').maskMoney({prefix:'$'});//*******masking for security payemnt
+	
+    if (ta_lock_id_p == '' || ta_lock_id_p == '0') {
+        $("#totalpayimg_div").html(unlockImg);
+        $('#totalpayimg_div').data('totalpayimgflag',0);
+        $('#totalpayimg_div').data('totalpay_lock_by',0);
+    }else{
+        $("#totalpayimg_div").html(lockImg);
+        $('#totalpayimg_div').data('totalpayimgflag',1);
+        $('#totalpayimg_div').data('totalpay_lock_by',ta_lock_id_p);
+        $('#total_payment_gig').attr('disabled', 'disabled');
+        $('.totalclck').removeClass("clickable");
+        negotiate_flg = 1;
+        
+    }
+    
+    if (asd_lock_id_p == '' || asd_lock_id_p == '0') {
+        $("#securityimg_div").html(unlockImg);
+        $('#securityimg_div').data('securityimgflag',0);
+        $('#securityimg_div').data('security_lock_by',0);
+    }else{
+        $("#securityimg_div").html(lockImg);
+        $('#securityimg_div').data('securityimgflag',1);
+        $('#securityimg_div').data('security_lock_by',asd_lock_id_p);
+        $('#security_payment_gig').attr('disabled', 'disabled');
+        $('.securityclck').removeClass("clickable");
+        negotiate_flg = 1;
+    }
+    
+    
+    if (bcf_lock_id_p=='' || bcf_lock_id_p =='0') {
+        $("#bookingcanimg_div").html(unlockImg); 
+        $("#bookingcanimg_div").data('bookingcanimgflag',0);
+        $('#bookingcanimg_div').data('booking_lock_by',0);
+    }else{
+        $("#bookingcanimg_div").html(lockImg); 
+        $('#bookingcanimg_div').data('bookingcanimgflag',1);
+        $('#bookingcanimg_div').data('booking_lock_by',bcf_lock_id_p);
+        $('#cancellation_fee').attr('disabled', 'disabled');
+        $('.bookingcanclck').removeClass("clickable");
+        negotiate_flg = 1;
+        
+    }
+    
+    if (gigpostrequestflagjs == 1) {
+        if ((parseInt(asd_lock_id_p )> 0) && (parseInt(ta_lock_id_p)> 0)) {
+            $('.reqst_btn_dvlr_negotiated').hide();
+        }
+    }else{
+        if ( (parseInt(bcf_lock_id_p )> 0) && (parseInt(asd_lock_id_p )> 0) && (parseInt(ta_lock_id_p)> 0)) {
+            $('.reqst_btn_dvlr_negotiated').hide();
+        }
+    }
+
+
+	
+
+	
+	   $("#divLoading").css("display","none");
+	  //*********
+	var csrf = "<?php echo csrf_token(); ?>";
+	//*********
+   				var booking_date_gig ='';
+   				var requestexpireddate_gig ='';
+   				var datemax ='';
+   				var datecur = new Date();
+   				datecur.setDate(datecur.getDate());
+   				var datecur2 = new Date();
+   				$('#booking_date_gig').datetimepicker({
+   				format: 'DD/MM/YYYY',
+   				minDate:datecur
+   				});
+   				$('#requestexpireddate_gig').datetimepicker({
+   				format: 'DD/MM/YYYY',
+   				minDate:datecur2
+   				
+   				});
+
+   				  $("#start_time_gig").datetimepicker({
+				  minDate: 1,
+                  format: 'LT'
+               });
+			  $("#end_time_gig").datetimepicker({
+					minDate: 1,
+                   format: 'LT'
+               });
+   				$("#start_time_gig").on("dp.change", function(e)
+   				{
+
+   					 var mmdata1=e.date;
+   					 console.log(e.date);
+					 
+   					 var startmmnttime= mmdata1.format("HH:mm");
+   					
+   					
+   					//**** get start date starts
+   					
+   					var startdatedata=$("#booking_date_gig").val();
+   					console.log("=startdatedata=>"+startdatedata );
+   										
+   					
+   					var mmmntstartdate=moment(startdatedata,"DD-MM-YYYY").format("YYYY-MM-DD");
+
+   					var totaldatetime=mmmntstartdate+' '+startmmnttime;
+   					var prevsdate5hrsback=moment(totaldatetime,"YYYY-MM-DD HH:mm").subtract(5,"hours").format("MM-DD-YYYY" );
+   					var prevstime5hrsback=moment(totaldatetime,"YYYY-MM-DD HH:mm").subtract(5,"hours").format("hh:mm A" );
+					
+   					//**** get start date ends
+					
+					//********added by Indrasis after soumik da
+					
+					var setdate=moment(prevsdate5hrsback,"MM-DD-YYYY").format("DD/MM/YYYY");
+					//var tttt = new Date(prevsdate5hrsback);
+					$("#requestexpireddate_gig").datetimepicker({
+						//minDate: 1;
+						//format:'DD-MM-YYYY',
+						//maxDate:prevsdate5hrsback
+					});
+					
+					$('#requestexpireddate_gig').data("DateTimePicker").maxDate(setdate);
+					var requestTime = $("#requestexpireddate_gig").val();
+					var bookingTime = $("#booking_date_gig").val();
+					
+					$('#requestexpiredtime_gig').data("DateTimePicker").maxDate(prevstime5hrsback);
+					//********added by Indrasis after soumik da
+   					 
+   				});
+   				
+   				//*****soumik da****************************************************************************************************
+				
+				
+				
+				
+				$("#requestexpireddate_gig").on("dp.change", function(e)
+   				{
+   				
+   					// alert('hello');
+   					 var mmdata1=e.date;
+   					 console.log(e.date);
+   					 
+   					var startmmnttime= mmdata1.format("HH:mm");
+   					console.log( "=startmmnttime=>"+startmmnttime);
+   					
+   					
+   					
+   					//**** get start date starts
+   					
+   					
+   					var startdatedata=$("#booking_date_gig").val();
+   					console.log("=startdatedata=>"+startdatedata );
+   										
+   					
+   					var mmmntstartdate=moment(startdatedata,"DD-MM-YYYY").format("YYYY-MM-DD");
+
+   					var totaldatetime=mmmntstartdate+' '+startmmnttime;
+   					var prevsdate5hrsback=moment(totaldatetime,"YYYY-MM-DD HH:mm").subtract(5,"hours").format("MM-DD-YYYY" );
+   					var prevstime5hrsback=moment(totaldatetime,"YYYY-MM-DD HH:mm").subtract(5,"hours").format("hh:mm A" );
+   					//**** get start date ends
+					
+					//********added by Indrasis after soumik da
+					var requestTime = $("#requestexpireddate_gig").val();
+					var bookingTime = $("#booking_date_gig").val();
+					if (requestTime == bookingTime)
+					{
+                       // console.log('match found');
+					   $("#requestexpiredtime_gig").show();
+						$('#requestexpiredtime_gig').data("DateTimePicker").maxDate(prevstime5hrsback);
+						
+                    }
+					else
+					{
+						$("#requestexpiredtime_gig").datetimepicker({
+						   maxDate:false,
+						   format: 'LT'
+						});
+					}
+					
+					//********added by Indrasis after soumik da
+   					 
+   				});
+   				 
+   	//});
+   //********masaking length for total payment attribute
+   //var maxLength = $("#total_payment_gig").attr('maxlength');
+   //if($("#total_payment_gig").val().length == maxLength)
+   //{
+   //	$("#total_payment_gig").next().focus();
+   //}
+   //
+   //var maxLength3 = $("#security_payment_gig").attr('maxlength');
+   //if($("#security_payment_gig").val().length == maxLength3)
+   //{
+   //	$("#security_payment_gig").next().focus();
+   //}
+   	//**** bind profile page ends
+</script>

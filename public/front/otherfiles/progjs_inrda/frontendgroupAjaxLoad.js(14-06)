@@ -1,0 +1,55 @@
+$(document).ready(function(){
+    showFromPage();
+    $(document).on('click','#formPage',function(){
+                         
+    showFromPage();
+    });
+    function showFromPage(){
+    var url = $('#hiddenUrl').val();
+    //alert(url);
+    $(".preeSelected").removeClass("selected");
+    $("#formPage").addClass("selected");
+    var showFromPage_url=base_url_data+"/groupdashboardfrmpage";
+    var showFromPage_data={_token:csrf_token_data,'url':url};
+    $.ajax({
+     url:showFromPage_url,
+     type:'POST',
+     dataType:'json',
+     data:showFromPage_data,
+     success:function(d){
+       var ep_contents=d.ep_contents;
+       loadPage(ep_contents)
+     }
+     
+     });
+    }
+    
+    function loadPage(args) {
+                         
+    var imfpth=base_url_data+"/front/otherfiles/progimages/loder.gif"
+    showmycustomloader(1,'','',"Please wait . Its loading ...",imfpth);
+    setTimeout(function(){
+             showmycustomloader(0,'1000','1000',"Please wait . Its loading ...",imfpth)
+              $("#fromDiv").html(args);
+       },3000);
+    }
+    
+    $(document).on('click','#userList',function(){
+    $(".preeSelected").removeClass("selected");
+    $("#userList").addClass("selected");         
+    var showFromPage_url=base_url_data+"/groupmemberlist";
+    var showFromPage_data={_token:csrf_token_data,};
+    $.ajax({
+     url:showFromPage_url,
+     type:'POST',
+     dataType:'json',
+     data:showFromPage_data,
+     success:function(d){
+       var ep_contents=d.ep_contents;
+       loadPage(ep_contents)
+     }
+     
+     });
+    });
+     
+});

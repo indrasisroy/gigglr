@@ -1,0 +1,243 @@
+<?php
+
+
+namespace App\Http\Controllers\frontend;
+
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+
+//use App\User
+use Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use DB;
+use Illuminate\Routing\Route;
+use Cookie;
+use View;
+
+
+
+class FrontendgroupController extends Controller
+{
+    
+    public function index(Request $request)
+    {
+        $sess_id = $request->session()->get('front_id_sess');
+        if($sess_id!=''){
+        $sqlGroupUser="SELECT grp.*,user.first_name,user.last_name FROM `group_member` as grp,`user_master` as user WHERE grp.`user_id`=user.`id`and  grp.`group_id`='1' and grp.`status`='1'";
+        $data['GroupUser']= DB::select( DB::raw($sqlGroupUser));
+        $view_obj = View::make('front.group.userListDive',$data);
+        $ep_view_contents = $view_obj->render();
+        $resp_arr=array();
+        $resp_arr['ep_contents']=$ep_view_contents;
+        echo json_encode($resp_arr);
+        }else{
+            return redirect('/');
+        }
+    }
+    function dashboard(Request $request){
+        $sess_id = $request->session()->get('front_id_sess');
+        if($sess_id!=''){
+        //$datamyaccount=array();
+        ////***** for location country starts ************
+        //$getcountry = DB::table('location_country as country');  
+        //$datamyaccount['country'] = $getcountry->get();
+        ////***** for location country ends ************
+        //
+        ////***** for location state starts ************
+        //$getstate = DB::table('location_state as state');  
+        //$datamyaccount['state'] = $getstate->get();
+        ////***** for location country ends ************
+        //
+
+        //return view('front.group.dashboard',$datamyaccount);
+        return view('front.group.dashboard');
+        }else{
+           return redirect('/');
+        }
+
+    }
+    function groupdashboardfrmload(){
+        $datamyaccount=array();
+        //***** for location country starts ************
+        $getcountry = DB::table('location_country as country');  
+        $datamyaccount['country'] = $getcountry->get();
+        //***** for location country ends ************
+        
+        //***** for location state starts ************
+        $getstate = DB::table('location_state as state');  
+        $datamyaccount['state'] = $getstate->get();
+        //***** for location country ends ************
+        
+        $view_obj = View::make('front.group.groupFrom',$datamyaccount);
+        $ep_view_contents = $view_obj->render();
+        
+        $resp_arr=array();
+        $resp_arr['ep_contents']=$ep_view_contents;
+        
+        echo json_encode($resp_arr);
+    }
+    function groupdashboardfrmsubmit(Request $request){
+        $flag_id=0; $error_message=''; $responseAr=array(); $error_msgAr=array(); $myerror_message=array();$my_message=array();
+        $sess_id = $request->session()->get('front_id_sess');
+
+        $group_name =$request->input('group_name');
+        $group_email =$request->input('group_email');
+        $group_contact =$request->input('group_contact');
+        $group_web_url =$request->input('group_web_url');
+        $address_1 =$request->input('address_1');
+        $address_2 =$request->input('address_2');
+        $select_country =$request->input('select_country');
+        $select_state =$request->input('select_state');
+        $city =$request->input('city');
+        $zip =$request->input('zip');
+        
+        $chkvalid=$this->checkGroupDashboardform($request,$sess_id);
+        if($chkvalid===true)
+        {
+            
+            //********Getting SEO name starts here
+            $seoname = $this->seoUrl($group_name);
+            $seoname = $seoname.'--';
+            //********** Checking SEO name exists or not strats here
+
+            $seoqry = DB::table('group_master');
+            $seoqry=$seoqry->where('seo_name', 'like', $seoname.'%');
+             if(!empty($sess_id))
+            {
+            //***check for edit
+            $seoqry=$seoqry->where('id', '<>', $sess_id);
+            }
+
+            $seoqry=$seoqry->count();
+            $tot_seocount=$seoqry;
+            $tot_seocount = $tot_seocount+1;
+            $seoname = $seoname.$tot_seocount;
+            $group_master_data['seo_name']= $seoname;
+            //********** Checkign SEO name exists or not ends here
+            //********Getting SEO name ends here
+            
+            $group_master_data['group_name']=$group_name;
+            //$group_master_data['seo_name']=$group_name;
+            $group_master_data['creater_id']=$sess_id;
+            $group_master_data['group_email']=$group_email;
+            $group_master_data['group_contact']=$group_contact;
+            $group_master_data['group_web_url']=$group_web_url;
+            $group_master_data['address_1']=$address_1;
+            $group_master_data['address_2']=$address_1;
+            $group_master_data['country']=$select_country;
+            $group_master_data['state']=$select_state;
+            $group_master_data['city']=$city;
+            $group_master_data['zip']=$zip;
+            
+            //print_r($group_master_data);
+            $insert_id=DB::table('group_master')->insertGetId($group_master_data);
+            
+            if($insert_id > 0){
+                $group_member_data['group_id']=$insert_id;
+                $group_member_data['user_id']=$sess_id;
+                $group_member_data['group_role']=1;
+                $group_member_data['create_date']=date('Y-m-d H:i:s');
+                $group_member_data['modified_date']=date('Y-m-d H:i:s');
+                $group_member_data['status']=1;
+                $group_member=DB::table('group_member')->insert($group_member_data); 
+            }
+
+        //$update=DB::table('group_master')->where('id', $sess_id)->update($update_data_user_master);
+            
+        }else{
+            $error_message = $chkvalid->messages();
+        }
+        //*********create validation error showing msg start*******//
+        if(!empty($error_message))
+        {
+            $error_message=json_decode(json_encode($error_message));
+          
+            foreach($error_message as $kk => $error_message_ar)
+            {
+             $error_msgAr[$kk]=implode("<br>",$error_message_ar);    
+            }
+          
+        }
+        //*********create validation error showing msg end*******//
+        $responseAr['flag_id']=$flag_id;
+        $responseAr['error_message']=$error_msgAr;
+        echo json_encode($responseAr);
+        
+    }
+    
+    public function checkGroupDashboardform($request,$sess_id=0)
+    {
+            $validator = Validator::make($request->all(),
+                    [
+                            'group_name' => "required|unique:group_master,group_name,".$sess_id,
+                            'group_email'=> "required|unique:group_master,group_email,".$sess_id,
+                            'group_contact'=> "required|numeric|min:10",
+                            'address_1'=> "required",
+                            'group_web_url'=> "required",    
+                    ],
+                    [
+                            'group_name.required'=>'*Group name field required',
+                            'group_name.unique'=>'*Group name must be unique',
+                            'group_email.required'=>'*Group email field required',
+                            'group_email.required'=>'*Group email must be unique',
+                            'group_contact.required'=>'*Group contact field required',
+                            'group_contact.numeric'=>'*Group contact field must be numeric',
+                            'group_contact.min'=>'*Group contact field length must be 10',
+                            'address_1.required'=>'*Group address field required',
+                            'group_web_url.required'=>'*Group web url field required',
+
+                    ]
+            );
+               
+            if ($validator->fails())
+            {
+                return $validator;
+            }
+                
+            return true;
+    }
+    
+      //*********Custom SEO Function starts here
+       
+      public function seoUrl($string_main) 
+      {
+            $string = substr($string_main,0,50);
+            //Lower case everything
+            $string = strtolower($string);
+            //Make alphanumeric (removes all other characters)
+            $string = str_slug($string,'-');
+            return $string;
+       }
+      //*********Custom SEO Function ends here
+    function groupChekEmail(Request $request){
+        $group_email=$request->input('group_email');
+        
+        $getGrp = DB::table('group_master as grp');
+        $getGrp = $getGrp->where('grp.group_email', $group_email);
+        $getGrpData = $getGrp->first();
+        $rtun='true';
+        if(!empty($getGrpData)){
+            $rtun = 'false';
+        }else{
+            $rtun = 'true';
+        }
+        echo $rtun;
+    }
+    function groupChekGrpName(Request $request){
+        $group_name=$request->input('group_name');
+        
+        $getGrp = DB::table('group_master as grp');
+        $getGrp = $getGrp->where('grp.group_name', $group_name);
+        $getGrpData = $getGrp->first();
+        $rtun='true';
+        if(!empty($getGrpData)){
+            $rtun = 'false';
+        }else{
+            $rtun = 'true';
+        }
+        echo $rtun;
+    }
+}

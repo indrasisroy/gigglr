@@ -1,0 +1,282 @@
+<div class="event_left_row">
+    <ul class="event_list">
+	<?php
+	$databaselastmonthflag = '';
+	if(!empty($maingig_qry_data_result)){
+			$iconpic = "";
+			$textmsg = "";
+			$ggbid = '';
+			$typo = '';
+			$gigtype = '';
+			$bookerorartist = '';
+			
+            $nestedclass = '';
+			
+		foreach($maingig_qry_data_result as $data_result){
+			//$databaselastmonthdate = date('Y-m-d',strtotime(date('Y-m-d H:i:s') . ' -1 month'));
+			//$gigeventdate = date('Y-m-d',strtotime($data_result['start_date']));
+			
+			$databaselastmonthdate = strtotime(date('Y-m-d H:i:s') . ' -1 month');
+			$gigeventdate = strtotime($data_result['start_date']);
+			
+			if($databaselastmonthdate < $gigeventdate){
+			$databaselastmonthflag = '1';
+			$iconpic2 = '';
+            //$iconpic2 = '';
+			$nestedclass = '';
+			$review = '';
+			if(session('front_id_sess') ==  $data_result['booker_id']){
+				$bookerorartist = 'booker';
+
+			}else{
+                $bookerorartist = '';
+
+            }
+			$gigid = $data_result['gigmaster_id'];
+			$gigunique = $data_result['giguniqueid'];
+			$typo = $data_result['type_flag'];
+			$categoryname = $data_result['category_name_join'];
+			$genrename = $data_result['genre_name_join'];
+			$bookername = ucfirst(trim(stripslashes($data_result['bk_nickname'])));
+			$evntstdt_frmt = date('d/m/Y',strtotime($data_result['start_date']));
+            $evnteddt_frmt = date('d/m/Y',strtotime($data_result['end_date']));
+			$gigtype = $data_result['gigpostrequestflag'];
+			$gig_rev = $data_result['review'];
+			//echo $data_result['rcsipsbb'];
+			$picArray = explode(",",$data_result['rcsipsbb']);
+			//print_r($picArray);
+            $eventtown = $data_result['event_city'];
+			$evntsttm_frmt = date('h:i A',strtotime($data_result['start_date']));
+            if($typo=='1') {
+                $typeflag='an Artist';
+            }elseif($typo=='2') {
+                $typeflag='a Group';
+            }
+            else{
+                $typeflag='a Venue';
+            }
+
+			//if($data_result['rcsipsbb'] == "REDCLOCK")
+			if (in_array("REDCLOCK", $picArray))
+			{
+				if (in_array("PURPLE", $picArray))
+				{
+						$iconpic2 = BASEURLPUBLICCUSTOM."front/images/box_icon.png";
+						//$iconpic2 = BASEURLPUBLICCUSTOM."front/images/box_icon.gif";
+						$nestedclass = 'nested';
+						$textmsg = "You posted a Gig Offer on <br>".$evntstdt_frmt." - ".$evntsttm_frmt."<br>".$genrename." - ".$categoryname." in ".$eventtown;
+						
+				}else{
+						$textmsg = "Negotiation with ".$bookername. "<br>".$evntstdt_frmt." - ".$evntsttm_frmt."<br>".$genrename."  - ".$categoryname." in ".$eventtown;
+				}
+				$iconpic = BASEURLPUBLICCUSTOM."/front/images/clock-red.gif";
+            
+			
+			}
+			else if(in_array("STARICON", $picArray))
+			{
+			
+				$currntDate = strtotime(date("Y-m-d H:i:s"));
+				$evnteddt_frmt_Date = strtotime($data_result['end_date']);
+
+				if($currntDate > $evnteddt_frmt_Date)
+				{
+					
+					if($gig_rev == '1'){
+						$iconpic = BASEURLPUBLICCUSTOM."/front/images/Star.png";
+                        //$iconpic = BASEURLPUBLICCUSTOM."/front/images/Star.gif";
+					}else if($gig_rev == '0'){
+						//$iconpic = BASEURLPUBLICCUSTOM."/front/images/Gif-star-2.gif";
+						//$iconpic = BASEURLPUBLICCUSTOM."/front/images/yellow_star.png"; change in 23-11-16
+						
+						$iconpic = BASEURLPUBLICCUSTOM."/front/images/blue_person_rev.png";
+						$review = 'reviewcustpop';
+					}
+					
+				}else{
+					$iconpic = BASEURLPUBLICCUSTOM."/front/images/yellow_star.png";
+                    //$iconpic = BASEURLPUBLICCUSTOM."/front/images/yellow_star.gif";
+				}
+				
+			
+			$textmsg = $evntstdt_frmt." - ".$evntsttm_frmt."<br> You have a confirmed booking as ".$typeflag."<br>".$genrename." - ".$categoryname." in ".$eventtown;
+			
+			}
+			else if(in_array("PURPLE", $picArray))
+			{
+			$iconpic = BASEURLPUBLICCUSTOM."/front/images/box_icon.png";
+			
+            //$iconpic = BASEURLPUBLICCUSTOM."/front/images/box_icon.gif";
+            //$nestedclass = 'nested';
+            
+            
+            
+            $textmsg = "You posted a Gig Offer on <br>".$evntstdt_frmt." - ".$evntsttm_frmt."<br>".$genrename." - ".$categoryname." in ".$eventtown;
+			}
+			else if(in_array("BLUEBOOK", $picArray))
+			{
+			$iconpic = BASEURLPUBLICCUSTOM."/front/images/book_blue.png";
+            //$iconpic = BASEURLPUBLICCUSTOM."/front/images/book_blue.gif";
+			
+			$textmsg = "Your posted Gig has been booked on <br>".$evntstdt_frmt." - ".$evntsttm_frmt."<br>".$genrename." - ".$categoryname." in ".$eventtown;
+            
+            $currntDate = strtotime(date("Y-m-d H:i:s"));
+            $evnteddt_frmt_Date = strtotime($data_result['end_date']);
+
+				if($currntDate > $evnteddt_frmt_Date)
+				{
+					$review = 'reviewcustpop';
+					$iconpic = BASEURLPUBLICCUSTOM."/front/images/blue_person_rev.png";
+				}
+            
+			}
+			else if(in_array("GREENGIG", $picArray))
+			{
+				//$iconpic = BASEURLPUBLICCUSTOM."/front/images/box_icon-green.gif";
+                $iconpic = BASEURLPUBLICCUSTOM."/front/images/box_icon-green.png";
+					if($typo=='1')
+					{
+						
+                        $textmsg = $bookername." has posted a Gig Offer for Artist on <br>".$evntstdt_frmt." - ".$evntsttm_frmt."<br>".$genrename." genre - ".$categoryname." skill in ".$eventtown;
+					}
+					else if($typo=='2')
+					{
+                        
+                        $textmsg = $bookername." has posted a Gig Offer for Group on <br>".$evntstdt_frmt." - ".$evntsttm_frmt."<br>".$genrename." genre - ".$categoryname." skill in ".$eventtown;
+					}
+			}
+			?>
+			<li>
+			<img class="rosterlefticonclass" src="<?php echo $iconpic;?>">
+			<?php
+				if($iconpic2!=''){
+				
+						?>
+						
+						<img class="rosterlefticonclass" src="<?php echo $iconpic2;?>">
+						<?php
+				
+				}
+			?>
+			
+			<a href="javascript:void(0)" class="gig_request viewgig <?php echo $review.' '.$nestedclass;?>" data-id="<?php echo $gigunique;?>" data-bkrorart="<?php echo $bookerorartist;?>" data-gigtype="<?php echo $gigtype;?>"  data-gigid="<?php echo $gigid;?>" data-typo="<?php echo $typo;?>"  data-offbid="<?php echo $ggbid;?>" >
+			
+			<?php echo $textmsg;?>
+				
+			</a>
+				<?php
+
+        if($gigtype==1 && $bookerorartist=='booker')
+        {
+            $nestdivid='rosterleftnestedlistresponseid_'.$gigid;
+            ?>
+                                                            
+            <div id="<?php echo $nestdivid;?>">
+            
+            </div>
+     <?php
+        }  
+       ?>
+       
+       <!-- nested child gig start -->
+       <?php
+       
+	if($nestedclass!='')
+	{
+       ?>
+	<?php
+	$artistname=""; $reqondt=""; $requestondt=""; $bidartistlabel=""; $bidbid=''; $gigunid=''; $nestid='';
+	
+	if(!empty($gigChild))
+		{
+
+	foreach($gigChild as $nested_data)
+			{
+		if($nested_data['nestedgig']['gig_id'] == $gigid && !empty($nested_data['nestedgig']['nested_qry_data']))
+				{
+					foreach($nested_data['nestedgig']['nested_qry_data'] as $nested_qry_data_list)
+					{
+					?>
+				<!--<div class="event_left_row">-->
+						<ul class="event_list">
+						<?php
+
+						$artistname=ucfirst(trim(stripslashes($nested_qry_data_list->book_req_artist_name)));
+						$gigunid=trim(stripslashes($nested_qry_data_list->giguniqueid));
+						
+						$bidbid=trim(stripslashes($nested_qry_data_list->id));
+						$nestid="bidbid_".$bidbid;
+						
+						$reqondt=trim(stripslashes($nested_qry_data_list->create_date));
+						if(!empty($reqondt))
+						{
+											$requestondt=date("d/m/Y",strtotime($reqondt));	
+						}
+						
+						$bidartistlabel="-   ".$artistname." has requested a bid for this gig on ".$requestondt; ?>
+						<li class="marginleft25" data-bidId = "<?php echo $bidbid;?>" data-id="<?php echo $gigunid;?>">
+							<a id="<?php echo $nestid; ?>" href="javascript:void(0)" class="" data-id="<?php echo $gigunid;?>" data-bidid="<?php echo $bidbid;?>" >
+												<?php echo $bidartistlabel;?>
+							</a>
+							<input type="hidden" id="hidbidid" value="<?php echo $bidbid;?>">
+						</li>
+					</ul>
+				<!--</div>	-->												
+				<?php
+									
+					}
+				}
+			}
+		}
+	else{
+	?>
+		<div class="event_left_row">
+				<ul class="event_list">
+					<li>
+					<a href="javascript:void(0)" gigid>
+					No bid record is present.
+					</a>
+					</li>
+				</ul>
+		</div>
+	<?php
+		}
+	}
+	?>
+       <!-- nested child gig end -->
+
+       
+			</li>
+			<?php	
+			}else{
+			$databaselastmonthflag = '0';
+			}
+			
+
+		}
+	}else{
+	?>
+        <li>
+            <a href="javascript:void(0)">
+				Event details display here.
+            </a>
+        </li>
+	<?php
+	}
+	if($databaselastmonthflag == '0'){
+	?>
+        <li>
+            <a href="javascript:void(0)">
+				Event details display here.
+            </a>
+        </li>
+	<?php
+	}
+	?>							
+		<li>
+        </li>								
+	</ul>
+</div>
+    
+    
+    

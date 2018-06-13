@@ -1,0 +1,325 @@
+<?php
+$successmsg='';$errormsg='';
+if(!empty($successmsgdata))
+{
+$successmsg=$successmsgdata;
+}
+
+if(!empty($errormsgdata))
+{
+$errormsg=$errormsgdata;
+}
+
+?>
+<?php
+
+if(!empty($pagi_country))
+{
+foreach($pagi_country as $countries_obj)
+{
+
+	$id=$countries_obj->id;
+    $description=$countries_obj->issue_description;
+	$leave_early=$countries_obj->leave_early;
+	$arrival_time=$countries_obj->arrival;
+	$receive_rider=$countries_obj->receive_rider;
+	$technical_issue=$countries_obj->technical_issue;
+	$able_to_complete=$countries_obj->able_to_complete;
+	$required_specifications_availability=$countries_obj->required_specifications_availability;
+}
+}
+?>
+@extends('layouts.admin.adminmaster',['successmsg' => $successmsg,'errormsg'=>$errormsg])
+@section('content')
+<div class="padding-md">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<div class="panel panel-default">
+<div class="panel-heading">
+Issue with Booker details
+</div>
+<div class="panel-body">
+<div class="form-group row">
+<label class="control-label col-sm-6">Did the group arrive on time?</label>
+<div class="col-sm-6">
+
+<?php
+if($arrival=1){
+	echo"Yes";
+}else{
+	echo"No";
+}
+?>
+<span  class="errorcustclass"></span>
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">What time did you arrive?</label>
+<div class="col-sm-6">   
+<?php
+$date=$countries_obj->arrival_time;
+echo date('h:i A', strtotime($date));
+?> 
+<span  class="errorcustclass"></span>									
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Was the groups required specifications available?</label>
+<div class="col-sm-6" >
+<?php
+if($required_specifications_availability=1){
+	echo"Yes";
+}else{
+	echo"No";
+}
+?>
+<span  class="errorcustclass"></span>										
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Was the group able to complete the performance?</label>
+<div class="col-sm-6">
+<?php
+if($able_to_complete=1){
+	echo"Yes";
+}else{
+	echo"No";
+}
+?>
+<span  class="errorcustclass"></span>											
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Were there any technical issues during the performance?</label>
+<div class="col-sm-6">
+<?php
+if($technical_issue=1){
+	echo"Yes";
+}else{
+	echo"No";
+}
+?>
+<span  class="errorcustclass"></span>									
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Did the group receive their rider?</label>
+<div class="col-sm-6">
+<?php
+if($receive_rider=1){
+	echo"Yes";
+}else{
+	echo"No";
+}
+?>
+<span  class="errorcustclass"></span>									
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Did the group (or any members) leave early?</label>
+<div class="col-sm-6">
+<?php
+if($leave_early=1){
+	echo"Yes";
+}else{
+	echo"No";
+}
+?>
+<span  class="errorcustclass"></span>									
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">what time did members leave?</label>
+<div class="col-sm-6">
+	<?php
+$date=$countries_obj->leaving_time;
+echo date('h:i A', strtotime($date));
+?> 
+<span  class="errorcustclass"></span>									
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Group Nickname</label>
+<div class="col-sm-6">
+<?php echo stripslashes($artist_details[0]->nickname); ?>
+<span  class="errorcustclass"></span>
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Group Creator E-mail</label>
+<div class="col-sm-6">
+<?php echo stripslashes($user_master[0]->email); ?>
+<span  class="errorcustclass"></span>
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-sm-6">Issue Description</label>
+<div class="col-sm-6">                                        
+<!--<textarea id="techspecs" class="form-control input-sm parsley-validated " name="techspecs" cols="50" rows="10">-->
+{{$description}}  
+<!--</textarea>-->
+<span class="errorcustclass"></span>
+</div>
+<span  class="errorcustclass"></span>
+</div>
+    <?php
+       // echo '<pre>';
+       // print_r($pagi_country);echo'<br>';
+       // print_r($user_master);echo'<br>';
+       // print_r($artist_details);echo'<br>';
+        //exit;
+    ?>
+    					<!--Reply Section Div -->
+<div class="form-group row" style="display:none" id="div_open_hide">
+    <div class="form-group row">
+        <label class="control-label col-sm-6">Select recipients to reply:</label>
+            <div class="col-sm-6">
+            
+                <div class="form-group">
+                   <!-- <label class="col-lg-2 control-label">Inline Checkbox</label>-->
+                   <!-- <div class="col-lg-10">-->
+                        <label class="label-checkbox inline">
+                            <input type="checkbox" class="email" name="booker_email" id="booker_id" value="{{$pagi_country[0]->dispute_opener_id}}">
+                            <span class="custom-checkbox"></span>
+                           Booker email
+                        </label>
+                        <label class="label-checkbox inline">
+                            <input type="checkbox" class="email" name="group_email" id="group_id" value="{{$artist_details[0]->group_id}}">
+                            <span class="custom-checkbox"></span>
+                          Group email
+                        </label>
+                  <!--  </div><!-- /.col -->
+				</div>
+            </div>
+    </div>
+
+    <div class="form-group row" id="div_open_hide">
+        <label class="control-label col-lg-2">Reply Content</label>
+            <div class="col-sm-10">
+                <textarea id="description" class="form-control input-sm " name="description" cols="50" rows="10"></textarea>		
+                    <span  class="errorcustclass"></span>	
+            </div>
+    </div>
+</div>
+ 
+<input type="hidden" name="resolve_dispute_id" id="resolve_dispute_id" value="{{$pagi_country[0]->id}}">
+<input type="hidden" id="booker_id_hidden" value="{{$pagi_country[0]->dispute_opener_id}}">
+<input type="hidden" id="gig_id" value="{{$pagi_country[0]->gig_id}}">
+<input type="hidden" id="gig_unique_id" value="{{$pagi_country[0]->gig_unique_id}}">
+<input type="hidden" id="dispute_opening_date" value="{{$pagi_country[0]->dispute_opening_date}}">
+<input type="hidden" id="dispute_type" value="{{$pagi_country[0]->dispute_type}}">
+
+<input type="hidden" id="group_creator_email" value="{{$user_master[0]->email}}">
+
+<input type="hidden" id="group_creator_id" value="{{$artist_details[0]->creater_id}}">
+<input type="hidden" id="group_nickname" value="{{$artist_details[0]->nickname}}">
+<input type="hidden" id="group_id_hidden" value="{{$artist_details[0]->group_id}}">
+ 
+
+<!--Reply Section div closes-->
+    
+</div>
+<div class="panel-footer">
+    <a class="btn btn-warning" href="<?php echo  url(ADMINSEPARATOR.'/admin_issue_with_group'); ?>"><i class="fa fa-chevron-left"></i> Back</a>
+        
+    <span id="button"  name="frgtchk" onclick="showhide()" class="btn btn-success btn-sm bounceIn animation-delay5  pull-right" >
+    <i class="fa fa-sign-in"></i> Reply</span>
+
+    <button type="button" id="disputeartistreply" class="btn btn-success btn-sm bounceIn animation-delay5  pull-right" style="display:none;">Submit</button>
+</div>
+<?php
+echo Form::close();
+?>
+</div>
+</div>
+</div>
+</div>
+@endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+        
+        $(document).on('click','#disputeartistreply',function(){
+              
+            var description_field = $("#description").val();
+            if(description_field === "undefined" || description_field === " "){
+                          alert ('Description field cannot remail blank!');
+            }
+            var booker_ID = '';
+            
+            if($("input[name^=booker_email]:checked")){
+                
+                booker_ID = $("input[name^=booker_email]:checked").val();	
+            }
+                    
+            var group_ID = '';
+            
+            if($("input[name^=group_email]:checked")){
+                
+                group_ID = $("input[name^=group_email]:checked").val();
+            }
+        
+            if((jQuery.type(group_ID) === "undefined") && (jQuery.type(booker_ID) === "undefined")){
+                
+                alert ('You didn\'t choose any of the checkboxes!');
+            }
+            else{
+              
+                var description=$("#description").val();
+                var resolve_dispute_id=$("#resolve_dispute_id").val();
+                var gig_id=$("#gig_id").val();
+                var gig_unique_id=$('#gig_unique_id').val();
+                 
+                var booker_id=$("#booker_id_hidden").val();
+                var group_id=$("#group_id_hidden").val();
+                
+                var dispute_opening_date=$('#dispute_opening_date').val();
+                var dispute_type=$('#dispute_type').val();
+                
+                var group_creator_email=$('#group_creator_email').val();
+                var group_creator_id=$('#group_creator_id').val();
+                var group_nickname=$('#group_nickname').val();
+                
+                var url= "<?php echo url(ADMINSEPARATOR.'/reply_to_group_booker');?>";
+                
+                var snddata = {_token:"<?php echo csrf_token(); ?>",'description':description,'resolve_dispute_id':resolve_dispute_id,'gig_id':gig_id,'gig_unique_id':gig_unique_id,'booker_id':booker_id,'group_id':group_id,'booker_ID':booker_ID,'group_ID':group_ID,'dispute_opening_date':dispute_opening_date,'dispute_type':dispute_type,'group_creator_email':group_creator_email,'group_creator_id':group_creator_id,'group_nickname':group_nickname};
+                
+                $.ajax({
+                	    url:url,
+                		type:"POST",
+                		data:snddata,				
+                		success:function(d)
+                		{
+                            console.log(d);
+                            $('#booker_id').attr('checked', false);
+                            $('#group_id').attr('checked', false);
+                            $('#description').val(' ');
+                		}
+                	});
+            }
+            
+        });
+    });
+    
+    function showhide(){
+        
+        var div = document.getElementById("div_open_hide");
+        if (div.style.display !== "none") {
+            div.style.display = "none";
+            $('#disputeartistreply').hide();
+            $('#button').show();
+        }
+        else {
+            div.style.display = "block";
+            
+            $('#button').hide();
+            $('#disputeartistreply').show();
+            
+        }
+    }
+   
+
+</script>
+    

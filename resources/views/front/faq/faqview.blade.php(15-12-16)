@@ -1,0 +1,72 @@
+<?php
+	$successmsg='';$errormsg='';
+	if(!empty($successmsgdata))
+	{
+		$successmsg=$successmsgdata;
+	}
+	if(!empty($errormsgdata))
+	{
+		$errormsg=$errormsgdata;
+	}
+?>
+
+
+  	
+<!-- profile-section-start -->
+	
+<section id="faqsecid" class="profile_outer text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-offset-2 col-sm-8">	
+			</div>
+		</div>	
+		<div class="row">	
+		</div>	
+		<div class="row">
+		</div>
+		<div id="accordion" class="panel-group row">
+		<?php
+			$counter = count($faqpage);
+			$j = 0;
+			if($counter>0)
+			{
+		?>
+			<h2 class="watch_heading">FAQ</h2>		
+			<div class="text-left">
+			<?php
+				foreach($faqpage as $faq)
+				{
+					if($j%3==0)
+					{
+			?>
+				<div class="col-sm-6">
+				<?php
+					}
+				?>
+					<div class="panel panel-default">				
+						<a data-toggle="collapse" class="accordian_nav collapsed" data-parent="#accordion" href="#collapsefaq<?php echo ($j+1);?>"><?php echo ($j+1).". ".$faq->title?></a>					
+						<div id="collapsefaq<?php echo ($j+1);?>" class="panel-collapse collapse">					
+							<div class="panel-body">					
+								{!! html_entity_decode($faq->description) !!}
+							</div>					
+						</div>
+					</div>
+				<?php
+					$j++;
+					if($j%3==0)
+					{
+				?>
+				</div>
+			<?php
+					}
+				}
+			?>
+			</div>
+		<?php
+			}
+		?> 
+		</div>
+	</div>
+</section>
+		
+

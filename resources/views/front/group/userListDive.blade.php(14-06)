@@ -1,0 +1,46 @@
+				<div class="col-sm-08 col-md-9">
+					<div class="rightContent">
+						<h3>Member list</h3>
+						
+						<div class="table-responsive">
+	            				<table class="table user-table">
+	            					<thead>
+	            						<tr>
+	            							<th>Member Name</th>
+	            							<th>Joining date</th>
+	            							<th>Action</th>
+	            						</tr>
+	            					</thead>
+	            					<tbody>
+                                    <?php
+                                    if(!empty($GroupUser)){
+                                    foreach($GroupUser as $userList){
+                                    $p=$userList->create_date;
+                                    $date=date('dS, F Y',strtotime($p));
+                                    ?>
+                                    <tr>
+	            							<td>
+	            								<a href="#" class="userName"><?php echo ucfirst($userList->first_name." ".$userList->last_name);?></a>
+	            							</td>
+	            							<td><?php echo $date;?></td>
+                                         
+	            							<td>
+	            								<div class="actionBtn">
+	            									<!--<a href="#" class="editUser"><img src="{{ URL::asset('front')}}/images/edit-icon.png" alt="" /></a>-->
+	            									<a href="#" class="removeUser"><img src="{{ URL::asset('front')}}/images/delete-icon.png" alt="" /></a>
+	            								</div>
+	            							</td>
+	            						</tr>
+                                    <?php
+                                    }
+                                    }
+                                    ?>
+	            						
+	            						
+	            					</tbody>
+	            				</table>
+	            			</div>
+						
+					</div>
+				</div>
+ <script type="text/javascript" src="{{ URL::asset('front')}}/otherfiles/progjs/frontendgroupdashbord.js">
